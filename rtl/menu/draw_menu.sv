@@ -22,7 +22,7 @@ logic [11:0] rgb_nxt;
  * Internal logic
  */
 
-always_ff @(posedge clk) begin : bg_ff_blk
+always_ff @(posedge clk) begin 
     if (rst) begin
         out.vcount <= '0;
         out.vsync  <= '0;
@@ -42,19 +42,31 @@ always_ff @(posedge clk) begin : bg_ff_blk
     end
 end
 
-always_comb begin : bg_comb_blk
-    if (in.vblnk || in.hblnk) begin             // Blanking region:
-        rgb_nxt = 12'h0_0_0;                    // - make it it black.
-    end else begin                              // Active region:
-        if (in.vcount == 0)                     // - top edge:
-            rgb_nxt = 12'hf_f_0;                // - - make a yellow line.
-        else if (in.vcount == VER_PIXELS - 1)   // - bottom edge:
-            rgb_nxt = 12'hf_0_0;                // - - make a red line.
-        else if (in.hcount == 0)                // - left edge:
-            rgb_nxt = 12'h0_f_0;                // - - make a green line.
-        else if (in.hcount == HOR_PIXELS - 1)   // - right edge:
-            rgb_nxt = 12'h0_0_f;                // - - make a blue line.
-
+always_comb begin 
+    if (in.vblnk || in.hblnk) begin             
+        rgb_nxt = 12'h0_0_0;                    
+    end else begin                              
+        if (in.vcount >= 0 && in.vcount < 16)  
+            if ((in.hcount%32) > 16 )                  
+                rgb_nxt = COLOR_YELLOW; 
+            else
+                rgb_nxt = COLOR_BLUE;                
+        else if (in.vcount > (VER_PIXELS-16) && in.vcount <= VER_PIXELS - 1) 
+            if ((in.hcount%32) < 16  )                  
+                rgb_nxt = COLOR_YELLOW; 
+            else
+                rgb_nxt = COLOR_BLUE;   
+                           
+        else if (in.hcount  >= 0 && in.hcount < 16 )   
+            if ((in.vcount%32) > 16 )                  
+                rgb_nxt = COLOR_GREEN; 
+            else
+                rgb_nxt = COLOR_BLUE;                            
+        else if (in.hcount >  (HOR_PIXELS-16) && in.hcount <= HOR_PIXELS-1 )   
+            if ((in.vcount%32) < 16 )                  
+                rgb_nxt = COLOR_RED; 
+            else
+                rgb_nxt = COLOR_BLUE;              
 
         else                                    
             rgb_nxt = MENU_BG_COLOR;             

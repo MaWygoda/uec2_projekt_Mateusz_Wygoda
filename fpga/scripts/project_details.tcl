@@ -35,7 +35,16 @@ set sv_files {
     ../rtl/vga_if.sv
     ../rtl/vga_timing.sv
     ../rtl/menu/draw_menu.sv
-    ../rtl/top_vga.sv
+    ../rtl/menu/menu_select_text.sv
+    ../rtl/menu/draw_menu_text.sv
+    ../rtl/menu/menu_textmenu.sv
+    ../rtl/menu/menu_text1.sv
+    ../rtl/menu/menu_text2.sv
+    ../rtl/menu/menu_text3.sv
+    ../rtl/common/my_function.sv
+    ../rtl/common/delay.sv
+    ../rtl/common/font_rom.sv
+    ../rtl/top_vga.sv   
     rtl/top_vga_basys3.sv
 }
 
@@ -45,10 +54,11 @@ set sv_files {
  }
 
 # Specify VHDL design files location            -- EDIT
-# set vhdl_files {
-#    path/to/file.vhd
-# }
+set vhdl_files {
+    ../rtl/common/Ps2Interface.vhd 
+}
 
+#    path/to/file.vhd
 # Specify files for a memory initialization     -- EDIT
 # set mem_files {
 #    path/to/file.data

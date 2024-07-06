@@ -39,6 +39,7 @@ always_ff@(posedge clk, posedge rst)
             hsync_reg <=0;
             vblnk_reg <=0;
             hblnk_reg <=0;
+            out.rgb <= 12'h0_0_0;  
         end
     else
         begin
@@ -48,6 +49,7 @@ always_ff@(posedge clk, posedge rst)
             hsync_reg <=hsync_next;
             vblnk_reg <=vblnk_next;
             hblnk_reg <=hblnk_next;
+            out.rgb <= 12'h0_0_0;
         end
         
 always_comb begin

@@ -1,9 +1,13 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-06-03 23:50:52
+Created: 2024-07-06 22:45:25
 
 ----SYNTHESIS----
-WARNING: [Synth 8-3848] Net out\.rgb in module/entity vga_timing does not have driver. [rtl/vga_timing.sv:15]
+WARNING: [Synth 8-7071] port 'tx_data' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_vga.sv:69]
+WARNING: [Synth 8-7071] port 'busy' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_vga.sv:69]
+WARNING: [Synth 8-7071] port 'err' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_vga.sv:69]
+WARNING: [Synth 8-7023] instance 'u_Ps2Interface' of module 'Ps2Interface' has 10 connections declared, but only 7 given [rtl/top_vga.sv:69]
+WARNING: [Synth 8-689] width (32) of port connection 'key' does not match port width (4) of module 'draw_menu_text' [rtl/top_vga.sv:117]
 WARNING: [Synth 8-7129] Port in\.rgb[11] in module draw_menu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[10] in module draw_menu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[9] in module draw_menu is either unconnected or has no load
@@ -16,20 +20,13 @@ WARNING: [Synth 8-7129] Port in\.rgb[3] in module draw_menu is either unconnecte
 WARNING: [Synth 8-7129] Port in\.rgb[2] in module draw_menu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[1] in module draw_menu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[0] in module draw_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port out\.rgb[11] in module vga_timing is either unconnected or has no load
-WARNING: [Synth 8-7129] Port out\.rgb[10] in module vga_timing is either unconnected or has no load
-WARNING: [Synth 8-7129] Port out\.rgb[9] in module vga_timing is either unconnected or has no load
-WARNING: [Synth 8-7129] Port out\.rgb[8] in module vga_timing is either unconnected or has no load
-WARNING: [Synth 8-7129] Port out\.rgb[7] in module vga_timing is either unconnected or has no load
-WARNING: [Synth 8-7129] Port out\.rgb[6] in module vga_timing is either unconnected or has no load
-WARNING: [Synth 8-7129] Port out\.rgb[5] in module vga_timing is either unconnected or has no load
-WARNING: [Synth 8-7129] Port out\.rgb[4] in module vga_timing is either unconnected or has no load
-WARNING: [Synth 8-7129] Port out\.rgb[3] in module vga_timing is either unconnected or has no load
-WARNING: [Synth 8-7129] Port out\.rgb[2] in module vga_timing is either unconnected or has no load
-WARNING: [Synth 8-7129] Port out\.rgb[1] in module vga_timing is either unconnected or has no load
-WARNING: [Synth 8-7129] Port out\.rgb[0] in module vga_timing is either unconnected or has no load
-WARNING: [Synth 8-7129] Port clk100 in module top_vga is either unconnected or has no load
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_Ps2Interface/FSM_onehot_state_reg[9]) is unused and will be removed from module top_vga_basys3.
+WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_Ps2Interface/FSM_onehot_state_reg[8]) is unused and will be removed from module top_vga_basys3.
+WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_Ps2Interface/FSM_onehot_state_reg[7]) is unused and will be removed from module top_vga_basys3.
+WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_Ps2Interface/FSM_onehot_state_reg[6]) is unused and will be removed from module top_vga_basys3.
+WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_draw_menu_text/FSM_sequential_state_reg_reg[1]) is unused and will be removed from module top_vga_basys3.
+WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_draw_menu_text/FSM_sequential_state_reg_reg[0]) is unused and will be removed from module top_vga_basys3.
 
 ----IMPLEMENTATION----
 CLEAR :)

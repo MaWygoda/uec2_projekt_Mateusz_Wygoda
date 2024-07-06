@@ -22,7 +22,9 @@ module top_vga_basys3 (
     output wire [3:0] vgaRed,
     output wire [3:0] vgaGreen,
     output wire [3:0] vgaBlue,
-    output wire JA1
+    output wire JA1,
+    inout PS2Clk,
+    inout PS2Data
 );
 
 
@@ -86,7 +88,9 @@ top_vga u_top_vga (
     .g(vgaGreen),
     .b(vgaBlue),
     .hs(Hsync),
-    .vs(Vsync)
+    .vs(Vsync),
+    .ps2_clk(PS2Clk),
+    .ps2_data(PS2Data)
 );
 
 endmodule

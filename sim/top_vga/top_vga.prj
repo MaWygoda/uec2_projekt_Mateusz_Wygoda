@@ -14,5 +14,16 @@ sv work ../../rtl/vga_pkg.sv \
         ../../rtl/vga_timing.sv \
         ../../rtl/menu/draw_menu.sv \
         ../../rtl/top_vga.sv \
+        ../../rtl/common/my_function.sv \
+        ../../rtl/menu/menu_select_text.sv \
+        ../../rtl/menu/draw_menu_text.sv \
+        ../../rtl/menu/menu_textmenu.sv \
+        ../../rtl/menu/menu_text1.sv \
+        ../../rtl/menu/menu_text2.sv \
+        ../../rtl/menu/menu_text3.sv \
+        ../../rtl/common/delay.sv \
+        ../../rtl/common/font_rom.sv \
         ../common/tiff_writer.sv \
         top_vga_tb.sv
+
+vhdl work ../../rtl/common/Ps2Interface.vhd
