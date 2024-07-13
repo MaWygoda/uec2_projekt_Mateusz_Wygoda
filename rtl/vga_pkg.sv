@@ -11,6 +11,12 @@ localparam COLOR_BLUE = 12'h0_0_f;
 localparam COLOR_RED = 12'hf_0_0;
 localparam COLOR_GREEN = 12'h0_f_0;
 
+
+// game
+
+localparam
+        GAME_BG_COLOR =  12'h3_a_a;
+
 // menu 
 
 

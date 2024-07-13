@@ -7,7 +7,7 @@
  * 2023  AGH University of Science and Technology
  * MTM UEC2
  * Piotr Kaczmarczyk
- *
+ * 
  * Description:
  * The project top module.
  */
@@ -34,18 +34,22 @@ module top_vga (
 
 vga_if vga_tim();
 vga_if vga_menu();
-vga_if vga_menu_text();
+vga_if vga_game();
+vga_if vga_top();
 
 wire [7:0] key_frame;
 wire rx_done;
-
+wire [11:0] xposition;
+wire [11:0] yposition;
+wire [3:0] key, key_menu;
+wire [3:0] menu_state;
 /**
  * Signals assignments
  */
 
-assign vs = vga_menu_text.vsync;
-assign hs = vga_menu_text.hsync;
-assign {r,g,b} = vga_menu_text.rgb;
+assign vs = vga_top.vsync;
+assign hs = vga_top.hsync;
+assign {r,g,b} = vga_top.rgb;
 
 
 /**
@@ -65,17 +69,58 @@ assign {r,g,b} = vga_menu_text.rgb;
 );
 
 
-
 Ps2Interface u_Ps2Interface (
     .ps2_clk(ps2_clk),
     .ps2_data(ps2_data), 
-    .clk(clk100),
+    .clk(clk),
     .rst,
     .write_data (1'b0),
     .rx_data(key_frame),
     .read_data(rx_done)
 
 );
+
+
+
+keyboard_decode u_keyboard_decode
+(
+    .clk, 
+    .rst,
+    .rx_done_tick(rx_done),
+    .dout(key_frame),
+    .key(key)
+);
+
+top_menu u_top_menu(
+    .clk,
+    .rst,
+    .in(vga_tim.in),
+    .out(vga_menu.out),
+    .key(key_menu),
+    .menu_state(menu_state)
+
+);
+
+top_game u_top_game(
+    .clk,
+    .rst,
+    .in(vga_tim.in),
+    .out(vga_game.out)
+
+);
+
+control u_control(
+    .clk,
+    .rst,
+    .key(key),
+    .in_g(vga_game.in),
+    .in_m(vga_menu.in),
+    .menu_state(menu_state),
+    .key_menu(key_menu),
+    .out(vga_top.out)
+);
+
+/*
 
 wire [3:0] charline;
 wire [6:0] charcode1;
@@ -92,10 +137,6 @@ draw_menu u_draw_menu (
     .out(vga_menu.out)
     
 );
-
-wire [11:0] xposition;
-wire [11:0] yposition;
-
 
 
 wire [10:0] addr;
@@ -114,7 +155,7 @@ draw_menu_text u_draw_menu_text(
     .out(vga_menu_text.out),
     .char_xy(char_xy),
     .char_line(charline), 
-    .key(0), 
+    .key(key), 
     //.addr(addr),  
     .char_line_pixels(char_line_pixels),
     //.pixel_adr(pixel_address),
@@ -169,5 +210,6 @@ menu_select_text u_menu_select_text(
     .char_line_out(addr[3:0])
 
 );
+*/
 
 endmodule

@@ -1,13 +1,27 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-07-06 22:45:25
+Created: 2024-07-13 23:42:57
 
 ----SYNTHESIS----
-WARNING: [Synth 8-7071] port 'tx_data' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_vga.sv:69]
-WARNING: [Synth 8-7071] port 'busy' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_vga.sv:69]
-WARNING: [Synth 8-7071] port 'err' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_vga.sv:69]
-WARNING: [Synth 8-7023] instance 'u_Ps2Interface' of module 'Ps2Interface' has 10 connections declared, but only 7 given [rtl/top_vga.sv:69]
-WARNING: [Synth 8-689] width (32) of port connection 'key' does not match port width (4) of module 'draw_menu_text' [rtl/top_vga.sv:117]
+WARNING: [Synth 8-7071] port 'tx_data' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_vga.sv:72]
+WARNING: [Synth 8-7071] port 'busy' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_vga.sv:72]
+WARNING: [Synth 8-7071] port 'err' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_vga.sv:72]
+WARNING: [Synth 8-7023] instance 'u_Ps2Interface' of module 'Ps2Interface' has 10 connections declared, but only 7 given [rtl/top_vga.sv:72]
+WARNING: [Synth 8-87] always_comb on 'key_nxt_reg' did not result in combinational logic [rtl/keyboard/keyboard_decode.sv:42]
+WARNING: [Synth 8-87] always_comb on 'state_reg_next_reg' did not result in combinational logic [rtl/keyboard/keyboard_decode.sv:71]
+WARNING: [Synth 8-87] always_comb on 'key_menu_next_reg' did not result in combinational logic [rtl/control.sv:81]
+WARNING: [Synth 8-7129] Port in\.rgb[11] in module draw_game_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in\.rgb[10] in module draw_game_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in\.rgb[9] in module draw_game_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in\.rgb[8] in module draw_game_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in\.rgb[7] in module draw_game_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in\.rgb[6] in module draw_game_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in\.rgb[5] in module draw_game_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in\.rgb[4] in module draw_game_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in\.rgb[3] in module draw_game_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in\.rgb[2] in module draw_game_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in\.rgb[1] in module draw_game_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in\.rgb[0] in module draw_game_bg is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[11] in module draw_menu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[10] in module draw_menu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[9] in module draw_menu is either unconnected or has no load
@@ -20,13 +34,16 @@ WARNING: [Synth 8-7129] Port in\.rgb[3] in module draw_menu is either unconnecte
 WARNING: [Synth 8-7129] Port in\.rgb[2] in module draw_menu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[1] in module draw_menu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[0] in module draw_menu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port clk100 in module top_vga is either unconnected or has no load
+WARNING: [Synth 8-327] inferring latch for variable 'key_nxt_reg' [rtl/keyboard/keyboard_decode.sv:42]
+WARNING: [Synth 8-327] inferring latch for variable 'state_reg_next_reg' [rtl/keyboard/keyboard_decode.sv:71]
+WARNING: [Synth 8-327] inferring latch for variable 'key_menu_next_reg' [rtl/control.sv:81]
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_Ps2Interface/FSM_onehot_state_reg[9]) is unused and will be removed from module top_vga_basys3.
 WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_Ps2Interface/FSM_onehot_state_reg[8]) is unused and will be removed from module top_vga_basys3.
 WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_Ps2Interface/FSM_onehot_state_reg[7]) is unused and will be removed from module top_vga_basys3.
 WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_Ps2Interface/FSM_onehot_state_reg[6]) is unused and will be removed from module top_vga_basys3.
-WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_draw_menu_text/FSM_sequential_state_reg_reg[1]) is unused and will be removed from module top_vga_basys3.
-WARNING: [Synth 8-3332] Sequential element (u_top_vga/u_draw_menu_text/FSM_sequential_state_reg_reg[0]) is unused and will be removed from module top_vga_basys3.
 
 ----IMPLEMENTATION----
-CLEAR :)
+WARNING: [DRC PDRC-153] Gated clock check: Net u_top_vga/u_keyboard_decode/E[0] is a gated clock net sourced by a combinational pin u_top_vga/u_keyboard_decode/key_menu_next_reg[3]_i_2/O, cell u_top_vga/u_keyboard_decode/key_menu_next_reg[3]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+WARNING: [DRC PDRC-153] Gated clock check: Net u_top_vga/u_keyboard_decode/state_reg_next_reg/G0 is a gated clock net sourced by a combinational pin u_top_vga/u_keyboard_decode/state_reg_next_reg/L3_2/O, cell u_top_vga/u_keyboard_decode/state_reg_next_reg/L3_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.

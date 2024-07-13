@@ -21,8 +21,13 @@ sv work ../../rtl/vga_pkg.sv \
         ../../rtl/menu/menu_text1.sv \
         ../../rtl/menu/menu_text2.sv \
         ../../rtl/menu/menu_text3.sv \
+        ../../rtl/menu/top_menu.sv \
+        ../../rtl/game/top_game.sv \
+        ../../rtl/game/draw_game_bg.sv \
         ../../rtl/common/delay.sv \
         ../../rtl/common/font_rom.sv \
+        ../../rtl/keyboard/keyboard_decode.sv \
+        ../../rtl/control.sv \
         ../common/tiff_writer.sv \
         top_vga_tb.sv
 
