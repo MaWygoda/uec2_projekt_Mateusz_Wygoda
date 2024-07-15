@@ -1,6 +1,6 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-07-13 23:42:57
+Created: 2024-07-15 21:41:26
 
 ----SYNTHESIS----
 WARNING: [Synth 8-7071] port 'tx_data' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_vga.sv:72]

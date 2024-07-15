@@ -46,8 +46,8 @@ set sv_files {
     ../rtl/common/delay.sv
     ../rtl/common/font_rom.sv
     ../rtl/menu/top_menu.sv
-    ../rtl/game/top_game.sv 
     ../rtl/game/draw_game_bg.sv 
+    ../rtl/game/top_game.sv 
     ../rtl/control.sv
     ../rtl/top_vga.sv   
     rtl/top_vga_basys3.sv

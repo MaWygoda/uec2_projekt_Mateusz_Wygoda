@@ -43,9 +43,11 @@ always_ff @(posedge clk) begin
 end
 
 always_comb begin 
-                                    
-    rgb_nxt = GAME_BG_COLOR;             
-
+    if (in.vblnk || in.hblnk) begin             
+        rgb_nxt = 12'h0_0_0;                    
+    end 
+        else                                    
+        rgb_nxt = MENU_BG_COLOR;             
 end
 
 endmodule

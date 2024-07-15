@@ -8,11 +8,12 @@ module top_game (
 );
 
 
-draw_game_bg u_draw_game_bg(
+draw_game_bg u_draw_game_bg (
     .clk,
     .rst,
-    .in,
-    .out
+    .in(in),
+    .out(out)
+    
 );
 
 
