@@ -12,12 +12,31 @@
 sv work ../../rtl/vga_pkg.sv \
         ../../rtl/vga_if.sv \
         ../../rtl/vga_timing.sv \
-        ../../rtl/draw_bg.sv \
-        ../../rtl/draw_rect.sv \
+        ../../rtl/menu/draw_menu.sv \
         ../../rtl/top_vga.sv \
+        ../../rtl/common/my_function.sv \
+        ../../rtl/menu/menu_select_text.sv \
+        ../../rtl/menu/draw_menu_text.sv \
+        ../../rtl/menu/menu_textmenu.sv \
+        ../../rtl/menu/menu_text1.sv \
+        ../../rtl/menu/menu_text2.sv \
+        ../../rtl/menu/menu_text3.sv \
+        ../../rtl/menu/top_menu.sv \
+        ../../rtl/game/top_game.sv \
+        ../../rtl/game/draw_game_bg.sv \
+        ../../rtl/common/delay.sv \
+        ../../rtl/common/font_rom.sv \
+        ../../rtl/keyboard/keyboard_decode.sv \
+        ../../rtl/control.sv \
+        ../../rtl/top_prj_gameplay.sv \
+        ../../rtl/top_prj_keyboard.sv \
         ../../fpga/rtl/top_vga_basys3.sv \
         ../common/tiff_writer.sv \
         top_fpga_tb.sv
+
+vhdl work ../../rtl/common/Ps2Interface.vhd
+
+verilog work ../../rtl/clk_wiz_0_clk_wiz.v  
 
 # compile glbl module - required for IP simulation
 verilog work ../common/glbl.v

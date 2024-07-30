@@ -65,6 +65,7 @@ top_menu u_top_menu(
 top_game u_top_game(
     .clk,
     .rst,
+    .key,
     .in(vga_tim.in),
     .out(vga_game.out)
 

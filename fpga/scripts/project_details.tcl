@@ -42,14 +42,23 @@ set sv_files {
     ../rtl/menu/menu_text2.sv
     ../rtl/menu/menu_text3.sv
     ../rtl/common/my_function.sv
+    ../rtl/common/numb2char.sv
     ../rtl/keyboard/keyboard_decode.sv
     ../rtl/common/delay.sv
     ../rtl/common/font_rom.sv
     ../rtl/menu/top_menu.sv
     ../rtl/game/draw_game_bg.sv 
+    ../rtl/game/draw_game_1.sv 
+    ../rtl/game/draw_map.sv 
+    ../rtl/game/draw_player.sv 
+    ../rtl/game/player_control.sv 
+    ../rtl/game/player_control_y.sv 
+    ../rtl/game/mape_rom.sv 
+    ../rtl/game/player_rom.sv 
     ../rtl/game/top_game.sv 
     ../rtl/control.sv
-    ../rtl/top_vga.sv   
+    ../rtl/top_prj_keyboard.sv  
+    ../rtl/top_prj_gameplay.sv 
     rtl/top_vga_basys3.sv
 }
 
@@ -68,3 +77,8 @@ set vhdl_files {
 # set mem_files {
 #    path/to/file.data
 # }
+ set mem_files {
+    ../rtl/images/mapa_test.dat
+    ../rtl/images/player.dat
+}
+

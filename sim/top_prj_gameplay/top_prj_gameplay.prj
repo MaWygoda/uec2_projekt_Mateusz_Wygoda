@@ -4,6 +4,7 @@ sv work ../../rtl/vga_pkg.sv \
         ../../rtl/menu/draw_menu.sv \
         ../../rtl/top_prj_gameplay.sv \
         ../../rtl/common/my_function.sv \
+        ../../rtl/common/numb2char.sv \
         ../../rtl/menu/menu_select_text.sv \
         ../../rtl/menu/draw_menu_text.sv \
         ../../rtl/menu/menu_textmenu.sv \
@@ -11,8 +12,14 @@ sv work ../../rtl/vga_pkg.sv \
         ../../rtl/menu/menu_text2.sv \
         ../../rtl/menu/menu_text3.sv \
         ../../rtl/menu/top_menu.sv \
-        ../../rtl/game/top_game.sv \
         ../../rtl/game/draw_game_bg.sv \
+        ../../rtl/game/draw_game_1.sv \
+        ../../rtl/game/draw_map.sv  \
+        ../../rtl/game/draw_player.sv  \
+        ../../rtl/game/player_control.sv  \
+        ../../rtl/game/mape_rom.sv  \
+        ../../rtl/game/player_rom.sv  \
+        ../../rtl/game/top_game.sv \
         ../../rtl/common/delay.sv \
         ../../rtl/common/font_rom.sv \
         ../../rtl/control.sv \

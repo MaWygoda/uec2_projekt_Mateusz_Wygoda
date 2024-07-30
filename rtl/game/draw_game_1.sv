@@ -1,10 +1,8 @@
-
 `timescale 1 ns / 1 ps
 
-module draw_menu_text (
+module draw_game_1 (
     input  logic clk,
     input  logic rst,
-    input  logic [3:0] key,
 
     vga_if.out out,
     vga_if.in in,
@@ -13,9 +11,7 @@ module draw_menu_text (
     input logic  [7:0] char_line_pixels,
     output  logic [7:0]  char_xy,
     output  logic [3:0]  char_line,   
-    output logic [1:0] select_text,
-    output logic [3:0] state_reg_out
-
+    output  logic [10:0]  addr
 
 
 //    input logic [11:0] rgb_pixel,
@@ -41,14 +37,8 @@ logic [11:0] rgb_out,rgb_in1,rgb_in2,rgb_in3,rgb_in4;
 logic [7:0] char_xy_next;
 logic [31:0] xy;
 
-logic [1:0] state_reg, state_reg_next;
+logic [10:0]  addr_nxt;
 
-
-
-localparam  MENU=2'b00,
-            TEXT1=2'b01,
-            TEXT2=2'b10,
-            TEXT3=2'b11;
 
 /**
  * Internal logic
@@ -74,8 +64,8 @@ always_ff @(posedge clk) begin : bg_ff_blk
         rgb_in2 <= '0;
         rgb_in1 <= '0;
 
-        state_reg <= MENU;
-        state_reg_out <=MENU;
+        addr <= '0;
+
 
     end else begin
 
@@ -99,9 +89,9 @@ always_ff @(posedge clk) begin : bg_ff_blk
 
         char_xy <= char_xy_next;
 
+        addr <= addr_nxt;
 
-        state_reg <= state_reg_next;
-        state_reg_out <= state_reg_next;
+
     end
 end
 
@@ -141,93 +131,40 @@ delay u_delay3(
 
 
 
+wire [6:0] char_code_numb;
 
+numb2char u_numb2char(
+    .clk,
+    .input_numb(4'h2),
+    .char_code(char_code_numb)
+
+
+);
 
 
 always_comb begin 
 
 
-    case(state_reg)
 
-    MENU:
         begin
             
-            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,200,100,8*16,16*4, MENU_TEXT_COLOR,  MENU_BG_COLOR, 1);
+            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,100,50,8*8,16, MENU_TEXT_COLOR,  COLOR_YELLOW, 1);
             char_xy_next [3:0] = xy [3:0];
             char_xy_next [7:4] = xy [11:8];
-            char_line_next = xy [19:16];
+            addr_nxt [3:0]= xy [19:16];
             rgb_out = xy [31:20];
 
-            select_text = 2'b00;
+            if(char_xy_next==0)
+            addr_nxt [10:4] = H;
+            else if(char_xy_next==1)
+            addr_nxt [10:4] = P;
+            else
+            addr_nxt [10:4] = char_code_numb;
             
-            //rgb_out= rgb_in3; 
 
-
-            if(key==key_2)
-                state_reg_next=TEXT1;
-            else if(key==key_3)
-                state_reg_next=TEXT2;
-            else if(key==key_4)
-                state_reg_next=TEXT3;     
-            else
-                state_reg_next=state_reg;
-        end
-
-    TEXT1:
-        begin 
-            
-            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,100,100,8*64,16*8, TEXT1_COLOR, TEXT1_BG_COLOR,0);
-            char_xy_next [4:0] = xy [4:0];
-            char_xy_next [7:5] = xy [10:8];
-            char_line_next = xy [19:16];
-            rgb_out = xy [31:20];
-
-            select_text = 2'b01;
-
-            if(key==key_esc)
-                state_reg_next=MENU;
-            else
-                state_reg_next=state_reg;
 
 
         end
-    TEXT2:
-        begin
-            xy  = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,150,150,8*64,16*8,TEXT1_COLOR, TEXT1_BG_COLOR,0);
-            char_xy_next [4:0] = xy [4:0];
-            char_xy_next [7:5] = xy [10:8];
-            char_line_next = xy [19:16];
-            rgb_out = xy [31:20];
-
-            select_text = 2'b10;
-
-            if(key==key_esc)
-                state_reg_next=MENU;
-            else
-                state_reg_next=state_reg;
-        end
-    
-    TEXT3:
-        begin
-            xy  = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,210,210,8*64,16*8,TEXT1_COLOR, TEXT1_BG_COLOR,0);
-            char_xy_next [4:0] = xy [4:0];
-            char_xy_next [7:5] = xy [10:8];
-            char_line_next = xy [19:16];
-            rgb_out = xy [31:20];
- 
-            select_text = 2'b11;
-        
-            if(key==key_esc)
-                state_reg_next=MENU;
-            else
-                state_reg_next=state_reg;
-
-        end
-
-    endcase
-
-
-
 
 end
 

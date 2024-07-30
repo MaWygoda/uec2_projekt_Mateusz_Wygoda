@@ -176,7 +176,7 @@ always_comb begin
     TEXT1:
         begin 
             
-            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,100,100,8*64,16*8, TEXT1_COLOR, TEXT1_BG_COLOR,0);
+            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,200,200,8*64,16*8, TEXT1_COLOR, TEXT1_BG_COLOR,0);
             char_xy_next [4:0] = xy [4:0];
             char_xy_next [7:5] = xy [10:8];
             char_line_next = xy [19:16];
@@ -193,7 +193,7 @@ always_comb begin
         end
     TEXT2:
         begin
-            xy  = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,150,150,8*64,16*8,TEXT1_COLOR, TEXT1_BG_COLOR,0);
+            xy  = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,200,200,8*64,16*8,TEXT1_COLOR, TEXT1_BG_COLOR,0);
             char_xy_next [4:0] = xy [4:0];
             char_xy_next [7:5] = xy [10:8];
             char_line_next = xy [19:16];
@@ -209,7 +209,7 @@ always_comb begin
     
     TEXT3:
         begin
-            xy  = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,210,210,8*64,16*8,TEXT1_COLOR, TEXT1_BG_COLOR,0);
+            xy  = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,100,100,8*64,16*8,TEXT1_COLOR, TEXT1_BG_COLOR,0);
             char_xy_next [4:0] = xy [4:0];
             char_xy_next [7:5] = xy [10:8];
             char_line_next = xy [19:16];

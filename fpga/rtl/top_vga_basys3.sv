@@ -37,6 +37,8 @@ wire locked;
 wire pclk;
 wire pclk_mirror;
 
+wire [3:0] key;
+
 (* KEEP = "TRUE" *)
 (* ASYNC_REG = "TRUE" *)
 logic [7:0] safe_start = 0;
@@ -80,6 +82,32 @@ ODDR pclk_oddr (
  *  Project functional top module
  */
 
+top_prj_keyboard u_top_prj_keyboard (
+
+    .clk(clk65),
+    .clk100(clk100),
+    .rst(btnC),
+    .ps2_clk(PS2Clk),
+    .ps2_data(PS2Data),
+    .key(key)
+
+);
+
+top_prj_gameplay u_top_prj_gameplay (
+
+    .clk(clk65),
+    .rst(btnC),
+    .r(vgaRed),
+    .g(vgaGreen),
+    .b(vgaBlue),
+    .hs(Hsync),
+    .vs(Vsync),
+    .key(key)
+
+);
+
+
+/*
 top_vga u_top_vga (
     .clk(clk65),
     .clk100(clk100),
@@ -92,5 +120,6 @@ top_vga u_top_vga (
     .ps2_clk(PS2Clk),
     .ps2_data(PS2Data)
 );
+*/
 
 endmodule
