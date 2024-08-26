@@ -27,9 +27,27 @@ wire [10:0] adr;
 wire [6:0] charcode;
 wire [7:0] char_line_pixels;
 
+wire [15:0] pixel_adr,pixel_adr1, pixel_adr1y ;
+wire  [11:0] rgb_pixel,rgb_pixel1, rgb_pixel1y;
+
+wire [10:0] player_xpos,player_xpos2;
+wire [7:0] map_ofs;
+
+wire [3:0] hp;
+wire [3:0] current_pix, current_pix_y;
+
+control_hp u_control_hp(
+    .clk,
+    .rst,
+    .current_pix(current_pix),
+    .key,
+    .hp_numb(hp)
+);
+
 draw_game_1 u_draw_game_1(
     .clk,
     .rst,
+    .hp_in(hp),
     .in(vga_game1.in),
     .out(vga_game2.out),
     .char_xy(char_xy), 
@@ -52,11 +70,6 @@ font_rom u_font_rom(
 
 );
 
-wire [15:0] pixel_adr,pixel_adr1, pixel_adr1y ;
-wire  [11:0] rgb_pixel,rgb_pixel1, rgb_pixel1y;
-
-wire [10:0] player_xpos,player_xpos2;
-wire [7:0] map_ofs;
 
 draw_map u_draw_map (
     .clk,
@@ -84,9 +97,11 @@ mape_rom u_mape_rom(
     .clk,
     .rgb(rgb_pixel),
     .address2(pixel_adr1),
-    .rgb2(rgb_pixel1),
+    //.rgb2(rgb_pixel1),
     .address3(pixel_adr1y),
-    .rgb3(rgb_pixel1y)
+    //.rgb3(rgb_pixel1y),
+    .rgb_cur_pix(current_pix),
+    .rgb_cur_pix_y(current_pix_y)
 );
 
 
@@ -103,7 +118,7 @@ player_control u_player_control(
     .ypos(player_ypos),
     .player_xpos(player_xpos),
     .pixel_adr(pixel_adr1),
-    .rgb_pixel(rgb_pixel1),
+    .rgb_pixel(current_pix),
     .direction(dir),
     .door(door)
 
@@ -117,7 +132,7 @@ player_control_y u_player_control_y(
     .xpos(player_xpos),
     .player_ypos(player_ypos),
     .pixel_adr(pixel_adr1y),
-    .rgb_pixel(rgb_pixel1y)
+    .rgb_pixel(current_pix_y)
 );
 
 draw_player u_draw_player(
@@ -149,7 +164,7 @@ game_content_top u_game_content_top(
 .key(key),
 .in(vga_game4.in),
 .out(out),
-.current_pix(rgb_pixel1),
+.current_pix(current_pix),
 .door(door)
 
 );

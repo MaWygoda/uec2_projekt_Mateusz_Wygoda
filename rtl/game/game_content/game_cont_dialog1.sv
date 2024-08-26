@@ -5,7 +5,7 @@ module game_cont_dialog1 (
     input  logic rst,
     input logic [3:0] key,
 
-    input logic [11:0] current_pix,
+    input logic [3:0] current_pix,
 
     vga_if.out out,
     vga_if.in in,
@@ -146,7 +146,7 @@ always_comb begin
 
 case(current_pix)
 
-12'h00F:  //kobieta
+4'h2:  //kobieta
 
         begin
             
@@ -160,7 +160,7 @@ case(current_pix)
 
         end
 
-12'h0FF:   //czarodziej
+4'h3:   //czarodziej
 
         begin           
             xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels2,400,600,8*16,16*4, MENU_TEXT_COLOR,  COLOR_YELLOW, 0);
@@ -177,7 +177,7 @@ case(current_pix)
                 item_nxt = item;
         end
 
-12'hFF0: //dzrwi
+4'h4: //dzrwi 
 
     begin        
         xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,400,600,8*16,16*4, MENU_TEXT_COLOR,  COLOR_YELLOW, 0);

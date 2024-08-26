@@ -9,6 +9,7 @@ module draw_game_1 (
 
     //output  logic [10:0] addr,            // {char_code[6:0], char_line[3:0]}
     input logic  [7:0] char_line_pixels,
+    input  logic [3:0] hp_in,
     output  logic [7:0]  char_xy,
     output  logic [3:0]  char_line,   
     output  logic [10:0]  addr
@@ -38,7 +39,7 @@ logic [7:0] char_xy_next;
 logic [31:0] xy;
 
 logic [10:0]  addr_nxt;
-
+logic [3:0] hp;
 
 /**
  * Internal logic
@@ -65,7 +66,7 @@ always_ff @(posedge clk) begin : bg_ff_blk
         rgb_in1 <= '0;
 
         addr <= '0;
-
+        hp<=9;
 
     end else begin
 
@@ -90,7 +91,7 @@ always_ff @(posedge clk) begin : bg_ff_blk
         char_xy <= char_xy_next;
 
         addr <= addr_nxt;
-
+        hp<=hp_in;
 
     end
 end
@@ -135,7 +136,7 @@ wire [6:0] char_code_numb;
 
 numb2char u_numb2char(
     .clk,
-    .input_numb(4'h2),
+    .input_numb(hp),
     .char_code(char_code_numb)
 
 
@@ -148,7 +149,7 @@ always_comb begin
 
         begin
             
-            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,100,700,8*8,16, MENU_TEXT_COLOR,  COLOR_YELLOW, 1);
+            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,100,700,8*4,16, MENU_TEXT_COLOR,  COLOR_YELLOW, 2);
             char_xy_next [3:0] = xy [3:0];
             char_xy_next [7:4] = xy [11:8];
             addr_nxt [3:0]= xy [19:16];
@@ -158,6 +159,8 @@ always_comb begin
             addr_nxt [10:4] = H;
             else if(char_xy_next==1)
             addr_nxt [10:4] = P;
+            else if(char_xy_next==2)
+            addr_nxt [10:4] = SPACE;
             else
             addr_nxt [10:4] = char_code_numb;
             

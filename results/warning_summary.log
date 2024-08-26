@@ -1,6 +1,6 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-26 11:45:44
+Created: 2024-08-26 21:19:54
 
 ----SYNTHESIS----
 WARNING: [Synth 8-7071] port 'tx_data' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_prj_keyboard.sv:34]
@@ -9,7 +9,10 @@ WARNING: [Synth 8-7071] port 'err' of module 'Ps2Interface' is unconnected for i
 WARNING: [Synth 8-7023] instance 'u_Ps2Interface' of module 'Ps2Interface' has 10 connections declared, but only 7 given [rtl/top_prj_keyboard.sv:34]
 WARNING: [Synth 8-87] always_comb on 'key_nxt_reg' did not result in combinational logic [rtl/keyboard/keyboard_decode.sv:42]
 WARNING: [Synth 8-87] always_comb on 'state_reg_next_reg' did not result in combinational logic [rtl/keyboard/keyboard_decode.sv:71]
-WARNING: [Synth 8-3848] Net char_line_next in module/entity draw_game_1 does not have driver. [rtl/game/draw_game_1.sv:28]
+WARNING: [Synth 8-87] always_comb on 'hp_numb_nxt_reg' did not result in combinational logic [rtl/game/control_hp.sv:54]
+WARNING: [Synth 8-87] always_comb on 'timer_nxt_reg' did not result in combinational logic [rtl/game/control_hp.sv:55]
+WARNING: [Synth 8-87] always_comb on 'state_reg_nxt_reg' did not result in combinational logic [rtl/game/control_hp.sv:57]
+WARNING: [Synth 8-3848] Net char_line_next in module/entity draw_game_1 does not have driver. [rtl/game/draw_game_1.sv:29]
 WARNING: [Synth 8-87] always_comb on 'timer_next_reg' did not result in combinational logic [rtl/game/game_map_ofset.sv:71]
 WARNING: [Synth 8-87] always_comb on 'current_pos_nxt_reg' did not result in combinational logic [rtl/game/game_map_ofset.sv:72]
 WARNING: [Synth 8-87] always_comb on 'desire_pos_nxt_reg' did not result in combinational logic [rtl/game/game_map_ofset.sv:74]
@@ -22,10 +25,14 @@ WARNING: [Synth 8-87] always_comb on 'player_ypos_next_reg' did not result in co
 WARNING: [Synth 8-87] always_comb on 'currentjump_nxt_reg' did not result in combinational logic [rtl/game/player_control_y.sv:67]
 WARNING: [Synth 8-87] always_comb on 'state_reg_nxt_reg' did not result in combinational logic [rtl/game/player_control_y.sv:69]
 WARNING: [Synth 8-87] always_comb on 'timer_next_reg' did not result in combinational logic [rtl/game/player_control_y.sv:113]
-WARNING: [Synth 8-689] width (16) of port connection 'pixel_adr' does not match port width (12) of module 'draw_player' [rtl/game/top_game.sv:128]
-WARNING: [Synth 8-689] width (11) of port connection 'player_xpos' does not match port width (10) of module 'draw_player' [rtl/game/top_game.sv:129]
-WARNING: [Synth 8-689] width (16) of port connection 'address' does not match port width (12) of module 'player_rom' [rtl/game/top_game.sv:138]
+WARNING: [Synth 8-689] width (16) of port connection 'pixel_adr' does not match port width (12) of module 'draw_player' [rtl/game/top_game.sv:143]
+WARNING: [Synth 8-689] width (11) of port connection 'player_xpos' does not match port width (10) of module 'draw_player' [rtl/game/top_game.sv:144]
+WARNING: [Synth 8-689] width (16) of port connection 'address' does not match port width (12) of module 'player_rom' [rtl/game/top_game.sv:153]
 WARNING: [Synth 8-87] always_comb on 'key_menu_next_reg' did not result in combinational logic [rtl/control.sv:81]
+WARNING: [Synth 8-7129] Port key[3] in module control_hp is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key[2] in module control_hp is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key[1] in module control_hp is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key[0] in module control_hp is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[11] in module draw_game_bg is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[10] in module draw_game_bg is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[9] in module draw_game_bg is either unconnected or has no load
@@ -53,6 +60,11 @@ WARNING: [Synth 8-7129] Port in\.rgb[0] in module draw_menu is either unconnecte
 WARNING: [Synth 8-7129] Port clk100 in module top_prj_keyboard is either unconnected or has no load
 WARNING: [Synth 8-327] inferring latch for variable 'key_nxt_reg' [rtl/keyboard/keyboard_decode.sv:42]
 WARNING: [Synth 8-327] inferring latch for variable 'state_reg_next_reg' [rtl/keyboard/keyboard_decode.sv:71]
+WARNING: [Synth 8-327] inferring latch for variable 'hp_numb_nxt_reg' [rtl/game/control_hp.sv:54]
+WARNING: [Synth 8-327] inferring latch for variable 'FSM_sequential_state_reg_nxt_reg' [rtl/game/control_hp.sv:57]
+WARNING: [Synth 8-327] inferring latch for variable 'FSM_onehot_state_reg_nxt_reg' [rtl/game/control_hp.sv:57]
+WARNING: [Synth 8-327] inferring latch for variable 'FSM_sequential_state_reg_nxt_reg' [rtl/game/control_hp.sv:57]
+WARNING: [Synth 8-327] inferring latch for variable 'timer_nxt_reg' [rtl/game/control_hp.sv:55]
 WARNING: [Synth 8-327] inferring latch for variable 'current_pos_nxt_reg' [rtl/game/game_map_ofset.sv:72]
 WARNING: [Synth 8-327] inferring latch for variable 'desire_pos_nxt_reg' [rtl/game/game_map_ofset.sv:74]
 WARNING: [Synth 8-327] inferring latch for variable 'state_reg_nxt_reg' [rtl/game/game_map_ofset.sv:85]
@@ -71,6 +83,14 @@ WARNING: [Synth 8-327] inferring latch for variable 'currentjump_nxt_reg' [rtl/g
 WARNING: [Synth 8-327] inferring latch for variable 'timer_next_reg' [rtl/game/player_control_y.sv:113]
 WARNING: [Synth 8-327] inferring latch for variable 'key_menu_next_reg' [rtl/control.sv:81]
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port xpos[1] in module player_control_y is either unconnected or has no load
+WARNING: [Synth 8-7129] Port xpos[0] in module player_control_y is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ypos[1] in module player_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ypos[0] in module player_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key[3] in module control_hp is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key[2] in module control_hp is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key[1] in module control_hp is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key[0] in module control_hp is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[11] in module top_game is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[10] in module top_game is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[9] in module top_game is either unconnected or has no load
@@ -83,18 +103,6 @@ WARNING: [Synth 8-7129] Port in\.rgb[3] in module top_game is either unconnected
 WARNING: [Synth 8-7129] Port in\.rgb[2] in module top_game is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[1] in module top_game is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[0] in module top_game is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[11] in module top_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[10] in module top_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[9] in module top_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[8] in module top_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[7] in module top_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[6] in module top_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[5] in module top_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[4] in module top_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[3] in module top_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[2] in module top_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[1] in module top_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[0] in module top_menu is either unconnected or has no load
 WARNING: [Synth 8-3332] Sequential element (u_top_prj_keyboard/u_Ps2Interface/FSM_onehot_state_reg[9]) is unused and will be removed from module top_vga_basys3.
 WARNING: [Synth 8-3332] Sequential element (u_top_prj_keyboard/u_Ps2Interface/FSM_onehot_state_reg[8]) is unused and will be removed from module top_vga_basys3.
 WARNING: [Synth 8-3332] Sequential element (u_top_prj_keyboard/u_Ps2Interface/FSM_onehot_state_reg[7]) is unused and will be removed from module top_vga_basys3.

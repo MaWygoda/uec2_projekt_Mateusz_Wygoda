@@ -7,7 +7,7 @@ module player_control (
     input  logic [3:0] key,
     input logic [8:0] ypos,
     output logic [10:0] player_xpos,
-    input logic  [11:0] rgb_pixel,
+    input logic  [3:0] rgb_pixel,
     output logic [15:0] pixel_adr,
     output logic direction,
     input logic door
@@ -78,7 +78,7 @@ always_comb begin
 
         RIGHT:
             begin
-                if(rgb_pixel==12'h000 || (rgb_pixel==12'hff0 && door ==1'b0)) begin
+                if(rgb_pixel==4'h0 || (rgb_pixel==4'h4 && door ==1'b0)) begin
                     player_xpos_next=player_xpos ;
                 end
                 else begin

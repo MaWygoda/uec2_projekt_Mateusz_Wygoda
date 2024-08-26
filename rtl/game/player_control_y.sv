@@ -7,7 +7,7 @@ module player_control_y (
     input  logic [3:0] key,
     input logic [10:0] xpos,
     output logic [8:0] player_ypos,
-    input logic  [11:0] rgb_pixel,
+    input logic  [3:0] rgb_pixel,
     output logic [15:0] pixel_adr
 );
 
@@ -91,7 +91,7 @@ always_comb begin
                     currentjump_nxt = currentjump- 4'b0001;
                 else
                     currentjump_nxt = 0;
-                if(player_ypos<448 && rgb_pixel!= 12'h000) begin
+                if(player_ypos<448 && rgb_pixel!= 4'h0) begin
                     player_ypos_next=player_ypos +2 -currentjump;
                 end
                 else begin 

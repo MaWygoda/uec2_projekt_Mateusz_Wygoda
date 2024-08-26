@@ -7,7 +7,7 @@ module game_content_top (
 
     vga_if.out out,
     vga_if.in in, 
-    input  logic [11:0] current_pix,
+    input  logic [3:0] current_pix,
     output door
 
 );

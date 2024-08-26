@@ -22,16 +22,16 @@ import vga_pkg::*;
     always_comb
         case (input_numb)
 
-            4'h0: data = A;
-            4'h1: data = B;
-            4'h2: data = C;
-            4'h3: data = D;
-            4'h4: data = E;
-            4'h5: data = F;
-            4'h6: data = G;
-            4'h7: data = H;
-            4'h8: data = SPACE;
-            4'h9: data = SPACE;
+            4'h0: data = C_0;
+            4'h1: data = C_1;
+            4'h2: data = C_2;
+            4'h3: data = C_3;
+            4'h4: data = C_4;
+            4'h5: data = C_5;
+            4'h6: data = C_6;
+            4'h7: data = C_7;
+            4'h8: data = C_8;
+            4'h9: data = C_9;
 
             default: data = SPACE;
         endcase
