@@ -5,13 +5,15 @@ module player_control (
     input  logic rst,
     //input  logic select,
     input  logic [3:0] key,
-    input logic [7:0] ypos,
-    output logic [9:0] player_xpos,
+    input logic [8:0] ypos,
+    output logic [10:0] player_xpos,
     input logic  [11:0] rgb_pixel,
-    output logic [13:0] pixel_adr
+    output logic [15:0] pixel_adr,
+    output logic direction,
+    input logic door
 );
 
-logic [13:0] adress_nxt;
+logic [15:0] adress_nxt;
 
 import vga_pkg::*;
 
@@ -20,8 +22,9 @@ import vga_pkg::*;
  */
 
 logic [31:0] timer, timer_next;
-logic  [9:0] player_xpos_next;
+logic  [10:0] player_xpos_next;
 logic  [2:0] state_reg,state_reg_nxt;
+logic direction_nxt;
 
 localparam IDLE = 3'b000;
 localparam RIGHT = 3'b001;
@@ -39,24 +42,32 @@ always_ff @(posedge clk) begin
         player_xpos <= 0;
         state_reg <= IDLE;
         pixel_adr <= '0;
+        direction <= 1'b1;
     end 
     else begin
         timer <= timer_next;
         player_xpos <= player_xpos_next;
         state_reg <= state_reg_nxt;
         pixel_adr <= adress_nxt;
+        direction <= direction_nxt;
     end
 end
 
 
+//assign adress_nxt[8:0]= 100;//(player_xpos>>1) ;
+//assign adress_nxt[15:9]= 100;//(ypos>>2 );
 
 always_comb begin  
+    adress_nxt[8:0]= (player_xpos>>2) ;
+    adress_nxt[15:9]= (ypos>>2 );
 
     case(state_reg)
 
         IDLE:
             begin
-            player_xpos_next=player_xpos;     
+
+            player_xpos_next=player_xpos; 
+            direction_nxt = direction;    
             if(key==key_D)
                 state_reg_nxt = RIGHT; 
             else if(key==key_A)
@@ -67,13 +78,14 @@ always_comb begin
 
         RIGHT:
             begin
-                if(rgb_pixel==12'h000) begin
+                if(rgb_pixel==12'h000 || (rgb_pixel==12'hff0 && door ==1'b0)) begin
                     player_xpos_next=player_xpos ;
                 end
                 else begin
                     player_xpos_next=player_xpos + 1; 
                 end
             state_reg_nxt = TIM;
+            direction_nxt = 1'b1;
             end
 
         LEFT:
@@ -85,10 +97,12 @@ always_comb begin
                     player_xpos_next=player_xpos;   
                 end
                 state_reg_nxt = TIM; 
+                direction_nxt = 1'b0;
             end
 
         TIM:
             begin
+                direction_nxt = direction; 
                 if(timer==1000000) begin
                 player_xpos_next=player_xpos; 
                 state_reg_nxt = IDLE; 
@@ -98,8 +112,6 @@ always_comb begin
                     player_xpos_next=player_xpos; 
                     state_reg_nxt = TIM; 
                     timer_next=timer+1;
-                    adress_nxt[7:0]= (player_xpos>>2) ;
-                    adress_nxt[13:8]= (ypos>>2 );
                 end
             end 
         endcase

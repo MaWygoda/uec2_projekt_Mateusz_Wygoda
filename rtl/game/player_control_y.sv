@@ -5,13 +5,13 @@ module player_control_y (
     input  logic rst,
     //input  logic select,
     input  logic [3:0] key,
-    input logic [9:0] xpos,
-    output logic [7:0] player_ypos,
+    input logic [10:0] xpos,
+    output logic [8:0] player_ypos,
     input logic  [11:0] rgb_pixel,
-    output logic [13:0] pixel_adr
+    output logic [15:0] pixel_adr
 );
 
-logic [13:0] adress_nxt;
+logic [15:0] adress_nxt;
 
 import vga_pkg::*;
 
@@ -20,7 +20,7 @@ import vga_pkg::*;
  */
 
 logic [31:0] timer, timer_next;
-logic  [7:0] player_ypos_next;
+logic  [8:0] player_ypos_next;
 logic  [2:0] state_reg,state_reg_nxt;
 
 logic [3:0] currentjump, currentjump_nxt;
@@ -39,7 +39,7 @@ localparam TIM = 3'b011;
 always_ff @(posedge clk) begin 
     if (rst) begin
         timer <= 0;
-        player_ypos <= 192;
+        player_ypos <= 448;
         state_reg <= IDLE;
         pixel_adr <= '0;
         currentjump <= '0;
@@ -54,9 +54,12 @@ always_ff @(posedge clk) begin
 end
 
 
+//assign adress_nxt[8:0]= 100;//(xpos>>1) ;
+//assign adress_nxt[15:9]= 100;//(player_ypos>>2) +2;
 
 always_comb begin  
-
+    adress_nxt[8:0]= (xpos>>2) ;
+    adress_nxt[15:9]= (player_ypos>>2) +2;
     case(state_reg)
         IDLE:
             begin
@@ -79,19 +82,19 @@ always_comb begin
                     player_ypos_next=player_ypos; 
                 end
             state_reg_nxt = TIM;
-            currentjump_nxt = 12;
+            currentjump_nxt = 15;
             end
 
     DOWN:
             begin
-                if(currentjump>0)
+                if(currentjump>8)
                     currentjump_nxt = currentjump- 4'b0001;
                 else
                     currentjump_nxt = 0;
-                if(player_ypos<192 ) begin
+                if(player_ypos<448 && rgb_pixel!= 12'h000) begin
                     player_ypos_next=player_ypos +2 -currentjump;
                 end
-                else begin
+                else begin 
                     player_ypos_next=player_ypos -currentjump;   
                 end
                 state_reg_nxt = TIM; 
@@ -113,8 +116,6 @@ always_comb begin
                 player_ypos_next=player_ypos; 
                 state_reg_nxt = TIM; 
                 timer_next=timer+1;
-                adress_nxt[7:0]= (xpos>>2) +16;
-                adress_nxt[13:8]= (player_ypos>>2) +16;
             end
         end 
 

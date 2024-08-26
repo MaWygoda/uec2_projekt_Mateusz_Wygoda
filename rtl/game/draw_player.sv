@@ -9,7 +9,9 @@ module draw_player (
     vga_if.out out,
     vga_if.in in,
 
+    input logic   dirction,
     input logic  [11:0] rgb_pixel,
+    input logic  [11:0] rgb_pixel_left,
     output logic [11:0] pixel_adr
 );
 
@@ -115,8 +117,18 @@ adress_nxt[11:6]=(in.vcount)-(player_ypos);
 
     if(in.hcount<1024) begin
      if((in.hcount>=player_xpos+2 && in.hcount<=player_xpos+64+1) && (  in.vcount>=player_ypos &&  in.vcount<=player_ypos+64-1) ) begin 
-
-        rgb_out=rgb_pixel;
+        if(dirction==1'b1) begin
+            if(rgb_pixel==12'h0F0)
+                rgb_out=rgb_in2;
+            else
+                rgb_out=rgb_pixel;
+        end
+        else begin
+            if(rgb_pixel_left==12'h0F0)
+                rgb_out=rgb_in2;
+            else
+                rgb_out=rgb_pixel_left;
+        end
 
      end
      else begin

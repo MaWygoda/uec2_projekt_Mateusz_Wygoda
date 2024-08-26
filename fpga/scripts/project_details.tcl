@@ -54,8 +54,13 @@ set sv_files {
     ../rtl/game/player_control.sv 
     ../rtl/game/player_control_y.sv 
     ../rtl/game/mape_rom.sv 
+    ../rtl/game/game_map_ofset.sv
     ../rtl/game/player_rom.sv 
     ../rtl/game/top_game.sv 
+    ../rtl/game/game_content/game_cont_dialog1.sv
+    ../rtl/game/game_content/game_cont_txt1.sv
+    ../rtl/game/game_content/game_cont_txt2.sv
+    ../rtl/game/game_content/game_content_top.sv
     ../rtl/control.sv
     ../rtl/top_prj_keyboard.sv  
     ../rtl/top_prj_gameplay.sv 
@@ -80,5 +85,6 @@ set vhdl_files {
  set mem_files {
     ../rtl/images/mapa_test.dat
     ../rtl/images/player.dat
+    ../rtl/images/player_left.dat
 }
 

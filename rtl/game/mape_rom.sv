@@ -1,8 +1,8 @@
 module mape_rom (
     input  logic clk ,
-    input  logic [13:0] address,  // address = {addry[5:0], addrx[5:0]}
-    input  logic [13:0] address2,
-    input  logic [13:0] address3,
+    input  logic [15:0] address,  // address = {addry[5:0], addrx[5:0]}
+    input  logic [15:0] address2,
+    input  logic [15:0] address3,
     output logic [11:0] rgb,
     output logic [11:0] rgb2,
     output logic [11:0] rgb3
@@ -13,7 +13,7 @@ module mape_rom (
  * Local variables and signals
  */
 
-reg [11:0] rom [0:16384];
+reg [11:0] rom [0:65536];
 
 
 /**

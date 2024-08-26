@@ -17,9 +17,15 @@ sv work ../../rtl/vga_pkg.sv \
         ../../rtl/game/draw_map.sv  \
         ../../rtl/game/draw_player.sv  \
         ../../rtl/game/player_control.sv  \
+        ../../rtl/game/player_control_y.sv  \
         ../../rtl/game/mape_rom.sv  \
+        ../../rtl/game/game_map_ofset.sv \
         ../../rtl/game/player_rom.sv  \
         ../../rtl/game/top_game.sv \
+        ../../rtl/game/game_content/game_cont_dialog1.sv \
+        ../../rtl/game/game_content/game_cont_txt1.sv \
+        ../../rtl/game/game_content/game_cont_txt2.sv \
+        ../../rtl/game/game_content/game_content_top.sv \
         ../../rtl/common/delay.sv \
         ../../rtl/common/font_rom.sv \
         ../../rtl/control.sv \

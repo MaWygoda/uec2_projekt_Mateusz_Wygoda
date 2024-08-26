@@ -1,8 +1,11 @@
 `timescale 1 ns / 1 ps
 
-module draw_game_1 (
+module game_cont_dialog1 (
     input  logic clk,
     input  logic rst,
+    input logic [3:0] key,
+
+    input logic [11:0] current_pix,
 
     vga_if.out out,
     vga_if.in in,
@@ -10,9 +13,12 @@ module draw_game_1 (
     //output  logic [10:0] addr,            // {char_code[6:0], char_line[3:0]}
     input logic  [7:0] char_line_pixels,
     output  logic [7:0]  char_xy,
-    output  logic [3:0]  char_line,   
-    output  logic [10:0]  addr
+    output  logic [3:0]  char_line,
 
+    input logic  [7:0] char_line_pixels2,
+
+    output logic item,
+    output logic door
 
 //    input logic [11:0] rgb_pixel,
 //   output logic [11:0] pixel_adr
@@ -37,7 +43,8 @@ logic [11:0] rgb_out,rgb_in1,rgb_in2,rgb_in3,rgb_in4;
 logic [7:0] char_xy_next;
 logic [31:0] xy;
 
-logic [10:0]  addr_nxt;
+logic item_nxt,door_nxt;
+
 
 
 /**
@@ -64,7 +71,9 @@ always_ff @(posedge clk) begin : bg_ff_blk
         rgb_in2 <= '0;
         rgb_in1 <= '0;
 
-        addr <= '0;
+        item <= '0;
+        door <= '0;
+
 
 
     end else begin
@@ -89,7 +98,8 @@ always_ff @(posedge clk) begin : bg_ff_blk
 
         char_xy <= char_xy_next;
 
-        addr <= addr_nxt;
+        item <= item_nxt;
+        door <= door_nxt;
 
 
     end
@@ -131,40 +141,77 @@ delay u_delay3(
 
 
 
-wire [6:0] char_code_numb;
-
-numb2char u_numb2char(
-    .clk,
-    .input_numb(4'h2),
-    .char_code(char_code_numb)
-
-
-);
-
-
 always_comb begin 
 
 
+case(current_pix)
+
+12'h00F:  //kobieta
 
         begin
             
-            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,100,700,8*8,16, MENU_TEXT_COLOR,  COLOR_YELLOW, 1);
+            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,400,600,8*16,16*4, MENU_TEXT_COLOR,  COLOR_YELLOW, 0);
             char_xy_next [3:0] = xy [3:0];
             char_xy_next [7:4] = xy [11:8];
-            addr_nxt [3:0]= xy [19:16];
+            char_line_next [3:0]= xy [19:16];
             rgb_out = xy [31:20];
-
-            if(char_xy_next==0)
-            addr_nxt [10:4] = H;
-            else if(char_xy_next==1)
-            addr_nxt [10:4] = P;
-            else
-            addr_nxt [10:4] = char_code_numb;
-            
-
-
+            item_nxt = item;
+            door_nxt = door;
 
         end
+
+12'h0FF:   //czarodziej
+
+        begin           
+            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels2,400,600,8*16,16*4, MENU_TEXT_COLOR,  COLOR_YELLOW, 0);
+            char_xy_next [3:0] = xy [3:0];
+            char_xy_next [7:4] = xy [11:8];
+            char_line_next [3:0]= xy [19:16];
+            rgb_out = xy [31:20];
+
+            door_nxt = door;
+
+            if(key==key_1)
+                item_nxt = 1'b1;
+            else
+                item_nxt = item;
+        end
+
+12'hFF0: //dzrwi
+
+    begin        
+        xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,400,600,8*16,16*4, MENU_TEXT_COLOR,  COLOR_YELLOW, 0);
+        char_xy_next [3:0] = xy [3:0];
+        char_xy_next [7:4] = xy [11:8];
+        char_line_next [3:0]= xy [19:16];
+        rgb_out = xy [31:20];
+
+        item_nxt = item;
+
+        if(item==1'b1 && key==key_1)
+            door_nxt = 1'b1;
+        else
+            door_nxt = door;
+    end
+
+
+default:
+
+    begin
+            
+        xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,400,600,8*16,16*4, COLOR_YELLOW,  COLOR_YELLOW, 0);
+        char_xy_next [3:0] = xy [3:0];
+        char_xy_next [7:4] = xy [11:8];
+        char_line_next [3:0]= xy [19:16];
+        rgb_out = xy [31:20];
+
+        item_nxt = item;
+        door_nxt = door;
+
+    end
+
+
+endcase
 
 end
 

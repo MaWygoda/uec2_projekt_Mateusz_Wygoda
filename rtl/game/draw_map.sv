@@ -9,7 +9,7 @@ module draw_map (
     vga_if.in in,
 
     input logic  [11:0] rgb_pixel,
-    output logic [13:0] pixel_adr
+    output logic [15:0] pixel_adr
 );
 
 import vga_pkg::*;
@@ -109,11 +109,11 @@ localparam ypos=0;
 
 always_comb begin 
 
-adress_nxt[7:0]=(in.hcount>>2)-(xpos>>2) ;
-adress_nxt[13:8]=(in.vcount>>2)-(ypos>>2);
+adress_nxt[8:0]=(in.hcount>>2)-(xpos>>2) + map_ofset ;
+adress_nxt[15:9]=(in.vcount>>2)-(ypos>>2);
 
     if(in.hcount<1024) begin
-     if((in.hcount>=xpos+2 && in.hcount<=xpos+256*4+1) && (  in.vcount>=ypos &&  in.vcount<=ypos+64*4-1) ) begin 
+     if((in.hcount>=xpos+2 && in.hcount<=xpos+512*4+1) && (  in.vcount>=ypos &&  in.vcount<=ypos+128*4-1) ) begin 
             rgb_out=rgb_pixel;
 
 

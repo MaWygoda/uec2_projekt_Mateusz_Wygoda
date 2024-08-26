@@ -11,6 +11,7 @@ module top_game (
 vga_if vga_game1();
 vga_if vga_game2();
 vga_if vga_game3();
+vga_if vga_game4();
 
 draw_game_bg u_draw_game_bg (
     .clk,
@@ -51,8 +52,11 @@ font_rom u_font_rom(
 
 );
 
-wire [13:0] pixel_adr,pixel_adr1, pixel_adr1y ;
+wire [15:0] pixel_adr,pixel_adr1, pixel_adr1y ;
 wire  [11:0] rgb_pixel,rgb_pixel1, rgb_pixel1y;
+
+wire [10:0] player_xpos,player_xpos2;
+wire [7:0] map_ofs;
 
 draw_map u_draw_map (
     .clk,
@@ -60,8 +64,18 @@ draw_map u_draw_map (
     .in(vga_game2.in),
     .out(vga_game3.out),
     .rgb_pixel(rgb_pixel),
-    .pixel_adr(pixel_adr)
+    .pixel_adr(pixel_adr),
+    .map_ofset(map_ofs)
     
+);
+
+game_mape_ofset u_game_mape_ofset(
+.clk,
+.rst,
+.player_pos(player_xpos),
+.player_pos_out(player_xpos2),
+.map_ofset(map_ofs)
+
 );
 
 
@@ -76,10 +90,11 @@ mape_rom u_mape_rom(
 );
 
 
-wire [9:0] player_xpos;
-wire [7:0] player_ypos;
+wire [8:0] player_ypos;
 wire [15:0] pixel_adr2;
 wire  [11:0] rgb_pixel2;
+wire  [11:0] rgb_pixel2l;
+wire dir, door;
 
 player_control u_player_control(
     .clk,
@@ -88,7 +103,9 @@ player_control u_player_control(
     .ypos(player_ypos),
     .player_xpos(player_xpos),
     .pixel_adr(pixel_adr1),
-    .rgb_pixel(rgb_pixel1)
+    .rgb_pixel(rgb_pixel1),
+    .direction(dir),
+    .door(door)
 
 
 );
@@ -107,19 +124,33 @@ draw_player u_draw_player(
     .clk,
     .rst,
     .in(vga_game3.in),
-    .out(out),
+    .out(vga_game4.out),
     .pixel_adr(pixel_adr2),
-    .player_xpos(player_xpos),
+    .player_xpos(player_xpos2),
     .player_ypos(player_ypos),
-    .rgb_pixel(rgb_pixel2)
+    .rgb_pixel(rgb_pixel2),
+    .rgb_pixel_left(rgb_pixel2l),
+    .dirction(dir)
 
 );
 
 player_rom u_player_rom(
     .address(pixel_adr2),
     .clk,
-    .rgb(rgb_pixel2)
+    .rgb(rgb_pixel2),
+    .rgb2(rgb_pixel2l)
 
+
+);
+
+game_content_top u_game_content_top(
+.clk,
+.rst,
+.key(key),
+.in(vga_game4.in),
+.out(out),
+.current_pix(rgb_pixel1),
+.door(door)
 
 );
 
