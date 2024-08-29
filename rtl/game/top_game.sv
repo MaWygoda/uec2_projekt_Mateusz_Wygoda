@@ -50,18 +50,18 @@ draw_game_1 u_draw_game_1(
     .hp_in(hp),
     .in(vga_game1.in),
     .out(vga_game2.out),
-    .char_xy(char_xy), 
-    .char_line(charline),
+    //.char_xy(char_xy), 
+    //.char_line(charline),
     .char_line_pixels(char_line_pixels),
     .addr(adr)
 
 );
 
-menu_textmenu u_menu_textmenu(
-    .clk,
-    .char_xy(char_xy),           
-    .char_code(charcode)
-);
+//menu_textmenu u_menu_textmenu(
+ //   .clk,
+ //   .char_xy(char_xy),           
+ //   .char_code(charcode)
+//);
 
 font_rom u_font_rom(
     .clk,

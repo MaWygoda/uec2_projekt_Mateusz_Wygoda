@@ -1,3 +1,11 @@
+/////////////////////////////////////////////////////////////////////////////
+/*
+ Module name:   top_menu 
+ Author:        Mateusz Wygoda
+ Version:       1.0
+ Last modified: 2024-07-14
+ */
+//////////////////////////////////////////////////////////////////////////////
 `timescale 1 ns / 1 ps
 
 module top_menu (
@@ -8,7 +16,6 @@ module top_menu (
     vga_if.out out,
     vga_if.in in
 );
-
 
 /**
  * Local variables and signals
@@ -22,12 +29,13 @@ wire [6:0] charcode2;
 wire [6:0] charcode3;
 wire [6:0] charcode4;
 wire [1:0] selecttext;
-
 wire [10:0] addr;
 wire [7:0] char_line_pixels;
-
 wire [7:0] char_xy;
 
+/**
+ * Submodules instances
+ */
 
 draw_menu u_draw_menu (
     .clk,

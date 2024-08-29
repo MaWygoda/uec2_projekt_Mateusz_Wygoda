@@ -1,13 +1,19 @@
-`timescale 1 ns / 1 ps
+/////////////////////////////////////////////////////////////////////////////
+/*
+ Module name:   draw_map 
+ Author:        Mateusz Wygoda
+ Version:       1.0
+ Last modified: 2024-07-14
+ */
+//////////////////////////////////////////////////////////////////////////////
+ `timescale 1 ns / 1 ps
 
 module draw_map (
     input  logic clk,
     input  logic rst,
     input logic  [7:0] map_ofset,
-
     vga_if.out out,
     vga_if.in in,
-
     input logic  [11:0] rgb_pixel,
     output logic [15:0] pixel_adr
 );
@@ -15,34 +21,31 @@ module draw_map (
 import vga_pkg::*;
 
 
-/**
- * Local variables and signals
- */
+//------------------------------------------------------------------------------
+// local parameters
+//------------------------------------------------------------------------------
 
+localparam XPOS= 0;
+localparam YPOS= 0;
+
+//------------------------------------------------------------------------------
+// local variables
+//------------------------------------------------------------------------------
 
 logic [15:0] adress_nxt;
-
-
 logic [10:0] hcount_del;
 logic [10:0] vcount_del;
 logic vsync_del, hsync_del;
 logic vblnk_del, hblnk_del;
-
 logic [10:0] hcount_del2;
 logic [10:0] vcount_del2;
 logic vsync_del2, hsync_del2;
 logic vblnk_del2, hblnk_del2;
+logic [11:0] rgb_out,rgb_in1,rgb_in2;
 
-
-logic [11:0] rgb_out;
-
-
-logic [11:0] rgb_in1;
-logic [11:0] rgb_in2;
-
-/**
- * Internal logic
- */
+//------------------------------------------------------------------------------
+// output register with sync reset
+//------------------------------------------------------------------------------
 
 always_ff @(posedge clk) begin : bg_ff_blk
     if (rst) begin
@@ -95,40 +98,35 @@ always_ff @(posedge clk) begin : bg_ff_blk
         out.hblnk  <= hblnk_del2; 
 
         pixel_adr <= adress_nxt;
-
         out.rgb <= rgb_out;
-
         rgb_in1 <= in.rgb;
         rgb_in2 <= rgb_in1;
     end
 end
 
-localparam xpos=0;
-localparam ypos=0;
 
+//------------------------------------------------------------------------------
+// logic
+//------------------------------------------------------------------------------
 
-always_comb begin 
+always_comb begin : out_comb_blk 
 
-adress_nxt[8:0]=(in.hcount>>2)-(xpos>>2) + map_ofset ;
-adress_nxt[15:9]=(in.vcount>>2)-(ypos>>2);
+    adress_nxt[8:0]=(in.hcount>>2)-(XPOS>>2) + map_ofset ;
+    adress_nxt[15:9]=(in.vcount>>2)-(YPOS>>2);
 
     if(in.hcount<1024) begin
-     if((in.hcount>=xpos+2 && in.hcount<=xpos+512*4+1) && (  in.vcount>=ypos &&  in.vcount<=ypos+128*4-1) ) begin 
+        if((in.hcount>=XPOS+2 && in.hcount<=XPOS+512*4+1) && (  in.vcount>=YPOS &&  in.vcount<=YPOS+128*4-1) ) begin 
             rgb_out=rgb_pixel;
-
-
-     end
-     else begin
+        end
+        else begin
         rgb_out= rgb_in2;
-
+        end
     end
-end
     else begin
         rgb_out= rgb_in2;
     end
 
 end
 
-//
 
 endmodule
