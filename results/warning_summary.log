@@ -1,6 +1,6 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-29 23:22:34
+Created: 2024-08-29 23:50:19
 
 ----SYNTHESIS----
 WARNING: [Synth 8-7071] port 'tx_data' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_prj_keyboard.sv:43]
@@ -12,10 +12,8 @@ WARNING: [Synth 8-87] always_comb on 'player_xpos_next_reg' did not result in co
 WARNING: [Synth 8-87] always_comb on 'direction_nxt_reg' did not result in combinational logic [rtl/game/player_control.sv:70]
 WARNING: [Synth 8-87] always_comb on 'state_reg_nxt_reg' did not result in combinational logic [rtl/game/player_control.sv:72]
 WARNING: [Synth 8-87] always_comb on 'timer_next_reg' did not result in combinational logic [rtl/game/player_control.sv:109]
-WARNING: [Synth 8-87] always_comb on 'player_ypos_next_reg' did not result in combinational logic [rtl/game/player_control_y.sv:66]
-WARNING: [Synth 8-87] always_comb on 'currentjump_nxt_reg' did not result in combinational logic [rtl/game/player_control_y.sv:67]
-WARNING: [Synth 8-87] always_comb on 'state_reg_nxt_reg' did not result in combinational logic [rtl/game/player_control_y.sv:69]
-WARNING: [Synth 8-87] always_comb on 'timer_next_reg' did not result in combinational logic [rtl/game/player_control_y.sv:113]
+WARNING: [Synth 8-87] always_comb on 'currentjump_nxt_reg' did not result in combinational logic [rtl/game/player_control_y.sv:118]
+WARNING: [Synth 8-87] always_comb on 'timer_next_reg' did not result in combinational logic [rtl/game/player_control_y.sv:145]
 WARNING: [Synth 8-689] width (16) of port connection 'pixel_adr' does not match port width (12) of module 'draw_player' [rtl/game/top_game.sv:143]
 WARNING: [Synth 8-689] width (11) of port connection 'player_xpos' does not match port width (10) of module 'draw_player' [rtl/game/top_game.sv:144]
 WARNING: [Synth 8-689] width (16) of port connection 'address' does not match port width (12) of module 'player_rom' [rtl/game/top_game.sv:153]
@@ -54,12 +52,8 @@ WARNING: [Synth 8-327] inferring latch for variable 'FSM_onehot_state_reg_nxt_re
 WARNING: [Synth 8-327] inferring latch for variable 'FSM_sequential_state_reg_nxt_reg' [rtl/game/player_control.sv:72]
 WARNING: [Synth 8-327] inferring latch for variable 'direction_nxt_reg' [rtl/game/player_control.sv:70]
 WARNING: [Synth 8-327] inferring latch for variable 'timer_next_reg' [rtl/game/player_control.sv:109]
-WARNING: [Synth 8-327] inferring latch for variable 'player_ypos_next_reg' [rtl/game/player_control_y.sv:66]
-WARNING: [Synth 8-327] inferring latch for variable 'FSM_sequential_state_reg_nxt_reg' [rtl/game/player_control_y.sv:69]
-WARNING: [Synth 8-327] inferring latch for variable 'FSM_onehot_state_reg_nxt_reg' [rtl/game/player_control_y.sv:69]
-WARNING: [Synth 8-327] inferring latch for variable 'FSM_sequential_state_reg_nxt_reg' [rtl/game/player_control_y.sv:69]
-WARNING: [Synth 8-327] inferring latch for variable 'currentjump_nxt_reg' [rtl/game/player_control_y.sv:67]
-WARNING: [Synth 8-327] inferring latch for variable 'timer_next_reg' [rtl/game/player_control_y.sv:113]
+WARNING: [Synth 8-327] inferring latch for variable 'timer_next_reg' [rtl/game/player_control_y.sv:145]
+WARNING: [Synth 8-327] inferring latch for variable 'currentjump_nxt_reg' [rtl/game/player_control_y.sv:118]
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 WARNING: [Synth 8-7129] Port xpos[1] in module player_control_y is either unconnected or has no load
 WARNING: [Synth 8-7129] Port xpos[0] in module player_control_y is either unconnected or has no load
@@ -99,17 +93,6 @@ WARNING: [Synth 8-3332] Sequential element (u_top_prj_gameplay/u_top_game/u_play
 WARNING: [Synth 8-3332] Sequential element (u_top_prj_gameplay/u_top_game/u_player_control/FSM_sequential_state_reg_nxt_reg[1]) is unused and will be removed from module top_vga_basys3.
 WARNING: [Synth 8-3332] Sequential element (u_top_prj_gameplay/u_top_game/u_player_control/FSM_sequential_state_reg_nxt_reg[0]) is unused and will be removed from module top_vga_basys3.
 WARNING: [Synth 8-3332] Sequential element (u_top_prj_gameplay/u_top_game/u_player_control/direction_nxt_reg) is unused and will be removed from module top_vga_basys3.
-WARNING: [Synth 8-3332] Sequential element (u_top_prj_gameplay/u_top_game/u_player_control_y/player_ypos_next_reg[8]) is unused and will be removed from module top_vga_basys3.
-WARNING: [Synth 8-3332] Sequential element (u_top_prj_gameplay/u_top_game/u_player_control_y/player_ypos_next_reg[7]) is unused and will be removed from module top_vga_basys3.
-WARNING: [Synth 8-3332] Sequential element (u_top_prj_gameplay/u_top_game/u_player_control_y/player_ypos_next_reg[6]) is unused and will be removed from module top_vga_basys3.
-WARNING: [Synth 8-3332] Sequential element (u_top_prj_gameplay/u_top_game/u_player_control_y/player_ypos_next_reg[5]) is unused and will be removed from module top_vga_basys3.
-WARNING: [Synth 8-3332] Sequential element (u_top_prj_gameplay/u_top_game/u_player_control_y/player_ypos_next_reg[4]) is unused and will be removed from module top_vga_basys3.
-WARNING: [Synth 8-3332] Sequential element (u_top_prj_gameplay/u_top_game/u_player_control_y/player_ypos_next_reg[3]) is unused and will be removed from module top_vga_basys3.
-WARNING: [Synth 8-3332] Sequential element (u_top_prj_gameplay/u_top_game/u_player_control_y/player_ypos_next_reg[2]) is unused and will be removed from module top_vga_basys3.
-WARNING: [Synth 8-3332] Sequential element (u_top_prj_gameplay/u_top_game/u_player_control_y/player_ypos_next_reg[1]) is unused and will be removed from module top_vga_basys3.
-WARNING: [Synth 8-3332] Sequential element (u_top_prj_gameplay/u_top_game/u_player_control_y/player_ypos_next_reg[0]) is unused and will be removed from module top_vga_basys3.
-WARNING: [Synth 8-3332] Sequential element (u_top_prj_gameplay/u_top_game/u_player_control_y/FSM_sequential_state_reg_nxt_reg[1]) is unused and will be removed from module top_vga_basys3.
-WARNING: [Synth 8-3332] Sequential element (u_top_prj_gameplay/u_top_game/u_player_control_y/FSM_sequential_state_reg_nxt_reg[0]) is unused and will be removed from module top_vga_basys3.
 
 ----IMPLEMENTATION----
-WARNING: [DRC PDRC-153] Gated clock check: Net u_top_prj_gameplay/u_top_game/u_player_control_y/currentjump_nxt_reg[3]_i_2_n_0 is a gated clock net sourced by a combinational pin u_top_prj_gameplay/u_top_game/u_player_control_y/currentjump_nxt_reg[3]_i_2/O, cell u_top_prj_gameplay/u_top_game/u_player_control_y/currentjump_nxt_reg[3]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+WARNING: [DRC PDRC-153] Gated clock check: Net u_top_prj_gameplay/u_top_game/u_player_control_y/currentjump_nxt_reg[3]_i_2_n_1 is a gated clock net sourced by a combinational pin u_top_prj_gameplay/u_top_game/u_player_control_y/currentjump_nxt_reg[3]_i_2/O, cell u_top_prj_gameplay/u_top_game/u_player_control_y/currentjump_nxt_reg[3]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
