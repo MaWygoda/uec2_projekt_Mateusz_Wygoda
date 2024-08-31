@@ -3,7 +3,7 @@
 module delay
     #( parameter
         WIDTH   = 11, // bit width of the input/output data
-        CLK_DEL = 4  // number of clock cycles the data is delayed
+        CLK_DEL = 4 // number of clock cycles the data is delayed
     )
     (
         input  logic                   clk, // posedge active clock

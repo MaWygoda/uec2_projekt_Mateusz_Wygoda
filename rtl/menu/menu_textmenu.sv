@@ -41,7 +41,7 @@ import vga_pkg::*;
         case (char_xy)
 
             8'h00: data = NKL;
-            8'h01: data = A;
+            8'h01: data = C_1;
             8'h02: data = NKR;
             8'h03: data = SPACE;
             8'h04: data = G;
@@ -58,7 +58,7 @@ import vga_pkg::*;
             8'h0F: data = SPACE;
 
             8'h10: data = NKL;
-            8'h11: data = SPACE;
+            8'h11: data = C_2;
             8'h12: data = NKR;
             8'h13: data = SPACE;
             8'h14: data = F;
@@ -76,7 +76,7 @@ import vga_pkg::*;
 
 
             8'h20: data = NKL;
-            8'h21: data = SPACE;
+            8'h21: data = C_3;
             8'h22: data = NKR;
             8'h23: data = SPACE;
             8'h24: data = O;
@@ -93,7 +93,7 @@ import vga_pkg::*;
             8'h2F: data = SPACE;
 
             8'h30: data = NKL;
-            8'h31: data = SPACE;
+            8'h31: data = C_4;
             8'h32: data = NKR;
             8'h33: data = SPACE;
             8'h34: data = S;

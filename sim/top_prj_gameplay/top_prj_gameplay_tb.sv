@@ -70,13 +70,12 @@ initial begin
     $display("completes, use the menu option to run all.");
     $display("Prepare to wait a long time...");
 
-    key = 4'b0101;
 
     wait (vs == 1'b0);
     @(negedge vs) $display("Info: negedge VS at %t",$time);
     @(negedge vs) $display("Info: negedge VS at %t",$time);
 
-    key = key_W;
+    key = key_1;
 
     wait (vs == 1'b0);
     @(negedge vs) $display("Info: negedge VS at %t",$time);

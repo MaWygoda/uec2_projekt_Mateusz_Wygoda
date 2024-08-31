@@ -1,11 +1,19 @@
-`timescale 1 ns / 1 ps
+/////////////////////////////////////////////////////////////////////////////
+/*
+ Module name:   player_control 
+ Author:        Mateusz Wygoda
+ Version:       1.0
+ Last modified: 2024-07-14
+ */
+//////////////////////////////////////////////////////////////////////////////
+ `timescale 1 ns / 1 ps
 
 module player_control (
     input  logic clk,
     input  logic rst,
     //input  logic select,
     input  logic [3:0] key,
-    input logic [8:0] ypos,
+    input logic [9:0] ypos,
     output logic [10:0] player_xpos,
     input logic  [3:0] rgb_pixel,
     output logic [15:0] pixel_adr,
@@ -13,111 +21,148 @@ module player_control (
     input logic door
 );
 
-logic [15:0] adress_nxt;
 
 import vga_pkg::*;
 
+//------------------------------------------------------------------------------
+// local parameters
+//------------------------------------------------------------------------------
+localparam TIM_VAL = 500000; 
+
+//------------------------------------------------------------------------------
+// local variables
+//------------------------------------------------------------------------------
+logic [15:0] adress_nxt;
 /**
  * Local variables and signals
  */
 
 logic [31:0] timer, timer_next;
 logic  [10:0] player_xpos_next;
-logic  [2:0] state_reg,state_reg_nxt;
 logic direction_nxt;
 
-localparam IDLE = 3'b000;
-localparam RIGHT = 3'b001;
-localparam LEFT = 3'b010;
-localparam TIM = 3'b011;
+
+enum logic [1:0] {
+    IDLE = 2'b00, 
+    RIGHT = 2'b01,
+    LEFT = 2'b11,
+    TIM = 2'b10
+} state, state_nxt;
 
 
-/**
- * Internal logic
- */
 
-always_ff @(posedge clk) begin 
-    if (rst) begin
-        timer <= 0;
-        player_xpos <= 0;
-        state_reg <= IDLE;
+//------------------------------------------------------------------------------
+// state sequential with synchronous reset
+//------------------------------------------------------------------------------
+always_ff @(posedge clk) begin : state_seq_blk
+    if(rst)begin : state_seq_rst_blk
+        state <= IDLE;
+    end
+    else begin : state_seq_run_blk
+        state <= state_nxt;
+    end
+end
+//------------------------------------------------------------------------------
+// next state logic
+//------------------------------------------------------------------------------
+always_comb begin : state_comb_blk
+    case(state)
+        IDLE: begin
+            if(key==key_D)
+                state_nxt = RIGHT; 
+            else if(key==key_A)
+                state_nxt = LEFT; 
+            else
+                state_nxt = IDLE; 
+        end
+        RIGHT: begin
+            state_nxt = TIM;
+        end
+        LEFT: begin
+            state_nxt = TIM;
+        end
+        TIM: begin
+            if(timer==TIM_VAL)
+                state_nxt = IDLE; 
+            else
+            state_nxt = TIM; 
+        end
+        default: state_nxt = IDLE;
+    endcase
+end
+
+//------------------------------------------------------------------------------
+// output register
+//------------------------------------------------------------------------------
+always_ff @(posedge clk) begin : out_reg_blk
+    if(rst) begin : out_reg_rst_blk
+        timer <= '0;
+        player_xpos <= '0;
         pixel_adr <= '0;
         direction <= 1'b1;
-    end 
-    else begin
+    end
+    else begin : out_reg_run_blk
         timer <= timer_next;
         player_xpos <= player_xpos_next;
-        state_reg <= state_reg_nxt;
         pixel_adr <= adress_nxt;
         direction <= direction_nxt;
     end
 end
 
+//------------------------------------------------------------------------------
+// output logic
+//------------------------------------------------------------------------------
+always_comb begin : out_comb_blk
 
-//assign adress_nxt[8:0]= 100;//(player_xpos>>1) ;
-//assign adress_nxt[15:9]= 100;//(ypos>>2 );
-
-always_comb begin  
     adress_nxt[8:0]= (player_xpos>>2) ;
     adress_nxt[15:9]= (ypos>>2 );
 
-    case(state_reg)
-
-        IDLE:
-            begin
-
+    case(state_nxt)
+        IDLE: begin
             player_xpos_next=player_xpos; 
-            direction_nxt = direction;    
-            if(key==key_D)
-                state_reg_nxt = RIGHT; 
-            else if(key==key_A)
-                state_reg_nxt = LEFT; 
-            else
-                state_reg_nxt = IDLE; 
+            direction_nxt = direction;   
+        end
+        RIGHT: begin
+            if(   (rgb_pixel!=4'h0 && (rgb_pixel!=4'h4 || door !=1'b0) ) && player_xpos<2000) begin
+                player_xpos_next=player_xpos + 1;
             end
-
-        RIGHT:
-            begin
-                if(rgb_pixel==4'h0 || (rgb_pixel==4'h4 && door ==1'b0)) begin
-                    player_xpos_next=player_xpos ;
-                end
-                else begin
-                    player_xpos_next=player_xpos + 1; 
-                end
-            state_reg_nxt = TIM;
+            else if(direction == 1'b0)
+                player_xpos_next=player_xpos +1;
+            else begin
+                player_xpos_next=player_xpos ; 
+            end
             direction_nxt = 1'b1;
+        end
+        LEFT: begin           
+            if(player_xpos>0 && rgb_pixel!=4'h0 )begin
+                player_xpos_next=player_xpos -1;
             end
-
-        LEFT:
-            begin
-                if(player_xpos>0) begin
-                    player_xpos_next=player_xpos -1;
-                end
-                else begin
-                    player_xpos_next=player_xpos;   
-                end
-                state_reg_nxt = TIM; 
-                direction_nxt = 1'b0;
+            else if(direction == 1'b1 && player_xpos>0)
+                player_xpos_next=player_xpos -1;
+            else begin
+                player_xpos_next=player_xpos;   
             end
-
-        TIM:
-            begin
-                direction_nxt = direction; 
-                if(timer==1000000) begin
+            direction_nxt = 1'b0;
+        end
+        TIM: begin
+            direction_nxt = direction; 
+            if(timer==TIM_VAL) begin
+            player_xpos_next=player_xpos; 
+            timer_next=0;
+            end
+            else begin
                 player_xpos_next=player_xpos; 
-                state_reg_nxt = IDLE; 
-                timer_next=0;
-                end
-                else begin
-                    player_xpos_next=player_xpos; 
-                    state_reg_nxt = TIM; 
-                    timer_next=timer+1;
-                end
-            end 
-        endcase
-
-
-
+                timer_next=timer+1;
+            end
+        end
+        default: begin
+            timer_next = '0;
+            player_xpos_next = '0;
+            adress_nxt = '0;
+            direction_nxt = 1'b1;
+            
+        end
+    endcase
 end
 
 endmodule

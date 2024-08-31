@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////////////
 /*
- Module name:   draw_game_bg 
+ Module name:   draw_end 
  Author:        Mateusz Wygoda
  Version:       1.0
  Last modified: 2024-07-14
@@ -8,7 +8,7 @@
 //////////////////////////////////////////////////////////////////////////////
  `timescale 1 ns / 1 ps
 
-module draw_game_1 (
+module game_end (
     input  logic clk,
     input  logic rst,
 
@@ -18,6 +18,7 @@ module draw_game_1 (
     //output  logic [10:0] addr,            // {char_code[6:0], char_line[3:0]}
     input logic  [7:0] char_line_pixels,
     input  logic [3:0] hp_in,
+    input  logic item2,
     output  logic [7:0]  char_xy,
     //output  logic [3:0]  char_line,   
     output  logic [10:0]  addr
@@ -156,22 +157,49 @@ end
 // logic
 //------------------------------------------------------------------------------
 always_comb begin : out_comb_blk
-        begin         
-            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,150,650,8*4,16, MENU_TEXT_COLOR,  COLOR_GREEN, 2);
+
+
+        if(item2==1'b1)begin
+       
+            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,350,350,8*4,16, MENU_TEXT_COLOR,  COLOR_GREEN, 2);
            char_xy_next [3:0] = xy [3:0];
            char_xy_next [7:4] = xy [11:8];
            addr_nxt [3:0]= xy [19:16];
            rgb_out = xy [31:20];
 
             if(char_xy==0)
-            addr_nxt [10:4] = H;
+            addr_nxt [10:4] = W;
             else if(char_xy==1)
-            addr_nxt [10:4] = P;
+            addr_nxt [10:4] = Y;
             else if(char_xy==2)
-            addr_nxt [10:4] = SPACE;
+            addr_nxt [10:4] = G;
             else
-            addr_nxt [10:4] = char_code_numb;
+            addr_nxt [10:4] = SPACE;
         end
+        else if (hp_in == 3'b0) begin
+            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,350,350,8*4,16, MENU_TEXT_COLOR,  COLOR_RED, 2);
+            char_xy_next [3:0] = xy [3:0];
+            char_xy_next [7:4] = xy [11:8];
+            addr_nxt [3:0]= xy [19:16];
+            rgb_out = xy [31:20];
+
+            if(char_xy==0)
+            addr_nxt [10:4] = P;
+            else if(char_xy==1)
+            addr_nxt [10:4] = R;
+            else if(char_xy==2)
+            addr_nxt [10:4] = E;
+            else
+            addr_nxt [10:4] = G;
+
+        end
+        else begin
+            addr_nxt = '0;
+            rgb_out = rgb_in4;
+        end
+
+
+
 end
 
 endmodule

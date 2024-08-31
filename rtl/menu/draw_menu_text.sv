@@ -1,6 +1,7 @@
+
 /////////////////////////////////////////////////////////////////////////////
 /*
- Module name:   draw_menu_text 
+ Module name:   draw_menu_text
  Author:        Mateusz Wygoda
  Version:       1.0
  Last modified: 2024-07-14
@@ -19,7 +20,7 @@ module draw_menu_text (
     //output  logic [10:0] addr,            // {char_code[6:0], char_line[3:0]}
     input logic  [7:0] char_line_pixels,
     output  logic [7:0]  char_xy,
-    output  logic [3:0]  char_line,   
+    output  logic [3:0]  char_line,
     output logic [1:0] select_text,
     output logic [3:0] state_reg_out
 
@@ -30,7 +31,7 @@ module draw_menu_text (
 );
 
 import vga_pkg::*;
-import my_function::*;
+//import my_function::*;
 
 //------------------------------------------------------------------------------
 // local parameters
@@ -100,6 +101,48 @@ delay u_delay3(
     .dout(delayedsignals)
 );
 
+
+
+function [31:0] display_text;
+
+    input [10:0] hcount, vcount;
+    input [11:0] rgb;
+    input [7:0] pixels; 
+    input [10:0] POS_CHAR_X, POS_CHAR_Y,TEXT_WIDTH,TEXT_HEIGHT;//,TEXT_WIDTH,TEXT_HEIGHT;
+    input [11:0] COLOR, BG_COLOR;
+    input [1:0] SCALE;
+    
+    logic [3:0] f_char_line;
+    logic [11:0] f_rgb;
+    begin
+    
+    
+        if((hcount>=POS_CHAR_X+4 && hcount<=POS_CHAR_X+(TEXT_WIDTH<<SCALE)+3) && (  vcount>=POS_CHAR_Y&&  vcount<POS_CHAR_Y+(TEXT_HEIGHT<<SCALE)) ) begin
+             
+            if(hcount==POS_CHAR_X+(TEXT_WIDTH<<SCALE)+3)
+            char_line_next =   ((vcount-(POS_CHAR_Y-1))%(16<<(SCALE)))>>SCALE ;
+            else
+            char_line_next = ((vcount-POS_CHAR_Y)%(16<<(SCALE)))>>SCALE ;
+                
+            if(pixels[  ((POS_CHAR_X+(TEXT_WIDTH<<SCALE)-hcount+3)%(8<<(SCALE)))>>SCALE   ] == 0)
+            f_rgb= BG_COLOR;
+            else
+            f_rgb= COLOR;
+    
+        end
+        else begin
+            f_rgb= rgb; 
+    
+        end
+    
+        display_text [7:0]= ((hcount-POS_CHAR_X)/8)>>SCALE;
+        display_text [15:8]= ((vcount-POS_CHAR_Y)/16)>>SCALE;
+        display_text [19:16]= f_char_line;
+        display_text [31:20]= f_rgb;
+    end
+    
+    endfunction
+
 //------------------------------------------------------------------------------
 // state sequential with synchronous reset
 //------------------------------------------------------------------------------
@@ -123,7 +166,7 @@ always_comb begin : state_comb_blk
             else if(key==key_3)
                 state_nxt=TEXT2;
             else if(key==key_4)
-                state_nxt=TEXT3;     
+                state_nxt=TEXT3;
             else
                 state_nxt=MENU;
         end
@@ -181,14 +224,14 @@ always_ff @(posedge clk) begin : out_reg_blk
         out.vblnk  <= vblnk_del;
         out.hcount <= hcount_del;
         out.hsync  <= hsync_del;
-        out.hblnk  <= hblnk_del; 
+        out.hblnk  <= hblnk_del;
 
 
-        char_line <= char_line_next2;
-        char_line_next2 <=char_line_next;
+        char_line <= char_line_next;
+        //char_line_next2 <=char_line_next;
 
         out.rgb <= rgb_out;
-        
+
         rgb_in1 <= in.rgb;
         rgb_in2 <= rgb_in1;
         rgb_in3 <= rgb_in2;
@@ -210,16 +253,16 @@ always_comb begin : out_comb_blk
             xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,200,100,8*16,16*4, MENU_TEXT_COLOR,  MENU_BG_COLOR, 1);
             char_xy_next [3:0] = xy [3:0];
             char_xy_next [7:4] = xy [11:8];
-            char_line_next = xy [19:16];
+            //char_line_next = xy [19:16];
             rgb_out = xy [31:20];
 
             select_text_nxt = 2'b00;
         end
-        TEXT1: begin           
+        TEXT1: begin
             xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,100,100,8*64,16*8, TEXT1_COLOR, TEXT1_BG_COLOR,0);
             char_xy_next [4:0] = xy [4:0];
             char_xy_next [7:5] = xy [10:8];
-            char_line_next = xy [19:16];
+            //char_line_next = xy [19:16];
             rgb_out = xy [31:20];
 
             select_text_nxt = 2'b01;
@@ -228,7 +271,7 @@ always_comb begin : out_comb_blk
             xy  = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,150,150,8*64,16*8,TEXT1_COLOR, TEXT1_BG_COLOR,0);
             char_xy_next [4:0] = xy [4:0];
             char_xy_next [7:5] = xy [10:8];
-            char_line_next = xy [19:16];
+            //char_line_next = xy [19:16];
             rgb_out = xy [31:20];
 
             select_text_nxt = 2'b10;
@@ -237,28 +280,23 @@ always_comb begin : out_comb_blk
             xy  = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,210,210,8*64,16*8,TEXT1_COLOR, TEXT1_BG_COLOR,0);
             char_xy_next [4:0] = xy [4:0];
             char_xy_next [7:5] = xy [10:8];
-            char_line_next = xy [19:16];
+            //char_line_next = xy [19:16];
             rgb_out = xy [31:20];
- 
+
             select_text_nxt = 2'b11;
         end
-        default: begin 
+        default: begin
             xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,200,100,8*16,16*4, MENU_TEXT_COLOR,  MENU_BG_COLOR, 1);
             char_xy_next [3:0] = xy [3:0];
             char_xy_next [7:4] = xy [11:8];
-            char_line_next = xy [19:16];
+            //char_line_next = xy [19:16];
             rgb_out = xy [31:20];
 
-            select_text_nxt = 2'b00;               
+            select_text_nxt = 2'b00;
         end
     endcase
 end
 
 
-
-
-
-
-
-
 endmodule
+

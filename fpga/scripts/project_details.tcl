@@ -58,6 +58,9 @@ set sv_files {
     ../rtl/game/player_rom.sv 
     ../rtl/game/top_game.sv 
     ../rtl/game/control_hp.sv 
+    ../rtl/game/game_wall.sv 
+    ../rtl/game/wall_rom.sv 
+    ../rtl/game/game_end.sv 
     ../rtl/game/game_content/game_cont_dialog1.sv
     ../rtl/game/game_content/game_cont_txt1.sv
     ../rtl/game/game_content/game_cont_txt2.sv
@@ -88,5 +91,6 @@ set vhdl_files {
     ../rtl/images/mapa_test.dat
     ../rtl/images/player.dat
     ../rtl/images/player_left.dat
+    ../rtl/images/wall.dat
 }
 

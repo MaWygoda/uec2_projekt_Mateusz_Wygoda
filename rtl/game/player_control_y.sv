@@ -14,7 +14,7 @@ module player_control_y (
     //input  logic select,
     input  logic [3:0] key,
     input logic [10:0] xpos,
-    output logic [8:0] player_ypos,
+    output logic [9:0] player_ypos,
     input logic  [3:0] rgb_pixel,
     output logic [15:0] pixel_adr
 );
@@ -32,9 +32,9 @@ localparam TIM_VAL = 2000000;
 // local variables
 //------------------------------------------------------------------------------
 logic [15:0] adress_nxt;
-logic [31:0] timer, timer_next;
-logic  [8:0] player_ypos_next;
-logic [3:0] currentjump, currentjump_nxt;
+logic [39:0] timer, timer_next;
+logic  [9:0] player_ypos_next;
+logic [5:0] currentjump, currentjump_nxt;
 
 
 
@@ -93,7 +93,7 @@ end
 always_ff @(posedge clk) begin : out_reg_blk
     if(rst) begin : out_reg_rst_blk
         timer <= 0;
-        player_ypos <= 448;
+        player_ypos <= 10'd448;
         pixel_adr <= '0;
         currentjump <= '0;
     end
@@ -118,17 +118,19 @@ always_comb begin : out_comb_blk
             currentjump_nxt = currentjump; 
         end
         UP: begin
-            if(player_ypos>0) begin
+            if(player_ypos>20) begin
                 player_ypos_next=player_ypos -1 ;
+                currentjump_nxt = 15;
             end
             else begin
                 player_ypos_next=player_ypos; 
+                currentjump_nxt = '0;
             end
-            currentjump_nxt = 15;
+            
         end
         DOWN: begin
             if(currentjump>8)
-                currentjump_nxt = currentjump- 4'b0001;
+                currentjump_nxt = currentjump- 1;
             else
                 currentjump_nxt = 0;
             if(player_ypos<448 && rgb_pixel!= 4'h0) begin

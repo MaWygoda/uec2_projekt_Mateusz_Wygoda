@@ -17,6 +17,10 @@ localparam COLOR_GREEN = 12'h0_f_0;
 localparam
         GAME_BG_COLOR =  12'h3_a_a;
 
+localparam  
+        DIR_RIGHT= 1'b1, 
+        DIR_LEFT= 1'b0; 
+
 // menu 
 
 

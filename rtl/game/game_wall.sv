@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////////////
 /*
- Module name:   draw_player 
+ Module name:   draw_wall
  Author:        Mateusz Wygoda
  Version:       1.0
  Last modified: 2024-07-14
@@ -8,38 +8,38 @@
 //////////////////////////////////////////////////////////////////////////////
  `timescale 1 ns / 1 ps
 
-module draw_player (
+
+module game_wall(
     input  logic clk,
     input  logic rst,
-    input logic  [10:0] player_xpos,
-    input logic  [9:0] player_ypos,
-
+    input logic door_in,
     vga_if.out out,
     vga_if.in in,
-
-    input logic   dirction,
+    output logic [12:0] pixel_adr,
     input logic  [11:0] rgb_pixel,
-    input logic  [11:0] rgb_pixel_left,
-    output logic [11:0] pixel_adr
-);
+    input logic [7:0] map_ofs
 
-import vga_pkg::*;
+);
 
 
 //------------------------------------------------------------------------------
 // local parameters
 //------------------------------------------------------------------------------
 
+localparam XPOS= 1790;
+localparam YPOS= 0;
 
 //------------------------------------------------------------------------------
 // local variables
 //------------------------------------------------------------------------------
 
-logic [11:0] adress_nxt;
-logic [10:0] hcount_del, hcount_del2;
-logic [10:0] vcount_del, vcount_del2;
+logic [12:0] adress_nxt;
+logic [10:0] hcount_del;
+logic [10:0] vcount_del;
 logic vsync_del, hsync_del;
 logic vblnk_del, hblnk_del;
+logic [10:0] hcount_del2;
+logic [10:0] vcount_del2;
 logic vsync_del2, hsync_del2;
 logic vblnk_del2, hblnk_del2;
 logic [11:0] rgb_out,rgb_in1,rgb_in2;
@@ -47,7 +47,8 @@ logic [11:0] rgb_out,rgb_in1,rgb_in2;
 //------------------------------------------------------------------------------
 // output register with sync reset
 //------------------------------------------------------------------------------
-always_ff @(posedge clk) begin : out_reg_blk
+
+always_ff @(posedge clk) begin : bg_ff_blk
     if (rst) begin
         out.vcount <= '0;
         out.vsync  <= '0;
@@ -74,7 +75,8 @@ always_ff @(posedge clk) begin : out_reg_blk
         rgb_in1 <= '0;
 
     end else begin
-   
+
+      
         vcount_del <= in.vcount;
         vsync_del  <= in.vsync;
         vblnk_del  <= in.vblnk;
@@ -97,9 +99,7 @@ always_ff @(posedge clk) begin : out_reg_blk
         out.hblnk  <= hblnk_del2; 
 
         pixel_adr <= adress_nxt;
-
         out.rgb <= rgb_out;
-
         rgb_in1 <= in.rgb;
         rgb_in2 <= rgb_in1;
     end
@@ -109,26 +109,18 @@ end
 //------------------------------------------------------------------------------
 // logic
 //------------------------------------------------------------------------------
-always_comb begin : out_comb_blk
 
-    adress_nxt[5:0]=(in.hcount)-(player_xpos);
-    adress_nxt[11:6]=(in.vcount)-(player_ypos);
+always_comb begin : out_comb_blk 
+
+    adress_nxt[5:0]=(in.hcount>>2)-(XPOS>>2);
+    adress_nxt[12:6]=(in.vcount>>2)-(YPOS>>2);
 
     if(in.hcount<1024) begin
-        if((in.hcount>=player_xpos+2 && in.hcount<=player_xpos+64+1) && (  in.vcount>=player_ypos &&  in.vcount<=player_ypos+64-1) ) begin 
-            if(dirction==DIR_RIGHT) begin
-                if(rgb_pixel==12'h0F0)
-                    rgb_out=rgb_in2;
-                else
-                    rgb_out=rgb_pixel;
-            end
-            else begin
-                if(rgb_pixel_left==12'h0F0)
-                    rgb_out=rgb_in2;
-                else
-                    rgb_out=rgb_pixel_left;
-            end
-
+        if((in.hcount+map_ofs*4>=XPOS+2 && in.hcount+map_ofs*4<=XPOS+64*4+1) && (  in.vcount>=YPOS &&  in.vcount<=YPOS+128*4-1) ) begin 
+            if(door_in==1'b0) 
+                rgb_out=rgb_pixel;
+            else
+                rgb_out= rgb_in2;         
         end
         else begin
         rgb_out= rgb_in2;
