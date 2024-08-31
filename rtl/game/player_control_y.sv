@@ -114,10 +114,12 @@ always_comb begin : out_comb_blk
     adress_nxt[15:9]= (player_ypos>>2) +2;
     case(state_nxt)
         IDLE: begin
+            timer_next=timer;
             player_ypos_next=player_ypos;   
             currentjump_nxt = currentjump; 
         end
         UP: begin
+            timer_next=timer;
             if(player_ypos>20) begin
                 player_ypos_next=player_ypos -1 ;
                 currentjump_nxt = 15;
@@ -129,6 +131,7 @@ always_comb begin : out_comb_blk
             
         end
         DOWN: begin
+            timer_next=timer;
             if(currentjump>8)
                 currentjump_nxt = currentjump- 1;
             else
@@ -147,6 +150,7 @@ always_comb begin : out_comb_blk
             timer_next=0;
             end
             else begin
+                currentjump_nxt = currentjump; 
                 player_ypos_next=player_ypos; 
                 timer_next=timer+1;
             end

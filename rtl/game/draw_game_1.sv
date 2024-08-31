@@ -39,8 +39,7 @@ import my_function::*;
 // local variables  and signals
 //------------------------------------------------------------------------------
 
-logic [3:0] char_line_next;
-logic [3:0] char_line_next2;
+
 logic [10:0] hcount_del;
 logic [10:0] vcount_del;
 logic vsync_del, hsync_del;
@@ -48,7 +47,7 @@ logic vblnk_del, hblnk_del;
 logic [11:0] rgb_out,rgb_in1,rgb_in2,rgb_in3,rgb_in4;
 logic [7:0] char_xy_next;
 logic [31:0] xy;
-logic [10:0]  addr_nxt, addr_nxt_del;
+logic [10:0]  addr_nxt;
 logic [3:0] hp;
 
 wire [10:0] signals2delay;
@@ -98,7 +97,6 @@ numb2char u_numb2char(
 always_ff @(posedge clk) begin : bg_ff_blk
     if (rst) begin
         char_xy <= 0;
-        char_line_next2 <= 0;
 
         //char_line <=0;
 

@@ -304,8 +304,8 @@ module menu_text1
             8'hFB: data = 7'h30;
             8'hFC: data = 7'h30;
             8'hFD: data = 7'h30;
-            8'hFE: data = 7'h30;
-            8'hFF: data = 7'h30;
+            8'hFE: data = SPACE;
+            8'hFF: data = SPACE;
 
 
 

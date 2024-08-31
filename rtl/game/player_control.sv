@@ -121,8 +121,10 @@ always_comb begin : out_comb_blk
         IDLE: begin
             player_xpos_next=player_xpos; 
             direction_nxt = direction;   
+            timer_next=timer;
         end
         RIGHT: begin
+            timer_next=timer;
             if(   (rgb_pixel!=4'h0 && (rgb_pixel!=4'h4 || door !=1'b0) ) && player_xpos<2000) begin
                 player_xpos_next=player_xpos + 1;
             end
@@ -133,7 +135,8 @@ always_comb begin : out_comb_blk
             end
             direction_nxt = 1'b1;
         end
-        LEFT: begin           
+        LEFT: begin   
+            timer_next=timer;      
             if(player_xpos>0 && rgb_pixel!=4'h0 )begin
                 player_xpos_next=player_xpos -1;
             end

@@ -1,31 +1,14 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-31 16:38:26
+Created: 2024-08-31 19:56:40
 
 ----SYNTHESIS----
 WARNING: [Synth 8-7071] port 'tx_data' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_prj_keyboard.sv:43]
 WARNING: [Synth 8-7071] port 'busy' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_prj_keyboard.sv:43]
 WARNING: [Synth 8-7071] port 'err' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_prj_keyboard.sv:43]
 WARNING: [Synth 8-7023] instance 'u_Ps2Interface' of module 'Ps2Interface' has 10 connections declared, but only 7 given [rtl/top_prj_keyboard.sv:43]
-WARNING: [Synth 8-6014] Unused sequential element char_line_next2_reg was removed.  [rtl/menu/draw_menu_text.sv:201]
-WARNING: [Synth 8-87] always_comb on 'char_line_next_reg' did not result in combinational logic [rtl/menu/draw_menu_text.sv:123]
-WARNING: [Synth 8-6014] Unused sequential element char_line_next2_reg was removed.  [rtl/game/draw_game_1.sv:101]
-WARNING: [Synth 8-87] always_comb on 'timer_next_reg' did not result in combinational logic [rtl/game/player_control.sv:151]
-WARNING: [Synth 8-87] always_comb on 'currentjump_nxt_reg' did not result in combinational logic [rtl/game/player_control_y.sv:118]
-WARNING: [Synth 8-87] always_comb on 'timer_next_reg' did not result in combinational logic [rtl/game/player_control_y.sv:147]
 WARNING: [Synth 8-689] width (16) of port connection 'pixel_adr' does not match port width (12) of module 'draw_player' [rtl/game/top_game.sv:145]
 WARNING: [Synth 8-689] width (16) of port connection 'address' does not match port width (12) of module 'player_rom' [rtl/game/top_game.sv:157]
-WARNING: [Synth 8-87] always_comb on 'item2_nxt_reg' did not result in combinational logic [rtl/game/game_content/game_cont_dialog1.sv:222]
-WARNING: [Synth 8-6014] Unused sequential element char_line_next2_reg was removed.  [rtl/game/game_end.sv:102]
-WARNING: [Synth 8-87] always_comb on 'char_xy_next_reg' did not result in combinational logic [rtl/game/game_end.sv:165]
-WARNING: [Synth 8-7129] Port char_line_pixels1[7] in module game_cont_dialog1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port char_line_pixels1[6] in module game_cont_dialog1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port char_line_pixels1[5] in module game_cont_dialog1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port char_line_pixels1[4] in module game_cont_dialog1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port char_line_pixels1[3] in module game_cont_dialog1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port char_line_pixels1[2] in module game_cont_dialog1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port char_line_pixels1[1] in module game_cont_dialog1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port char_line_pixels1[0] in module game_cont_dialog1 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port key[3] in module control_hp is either unconnected or has no load
 WARNING: [Synth 8-7129] Port key[2] in module control_hp is either unconnected or has no load
 WARNING: [Synth 8-7129] Port key[1] in module control_hp is either unconnected or has no load
@@ -55,12 +38,6 @@ WARNING: [Synth 8-7129] Port in\.rgb[2] in module draw_menu is either unconnecte
 WARNING: [Synth 8-7129] Port in\.rgb[1] in module draw_menu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port in\.rgb[0] in module draw_menu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port clk100 in module top_prj_keyboard is either unconnected or has no load
-WARNING: [Synth 8-327] inferring latch for variable 'char_line_next_reg' [rtl/menu/draw_menu_text.sv:123]
-WARNING: [Synth 8-327] inferring latch for variable 'timer_next_reg' [rtl/game/player_control.sv:151]
-WARNING: [Synth 8-327] inferring latch for variable 'timer_next_reg' [rtl/game/player_control_y.sv:147]
-WARNING: [Synth 8-327] inferring latch for variable 'currentjump_nxt_reg' [rtl/game/player_control_y.sv:118]
-WARNING: [Synth 8-327] inferring latch for variable 'item2_nxt_reg' [rtl/game/game_content/game_cont_dialog1.sv:222]
-WARNING: [Synth 8-327] inferring latch for variable 'char_xy_next_reg' [rtl/game/game_end.sv:165]
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 WARNING: [Synth 8-7129] Port xpos[1] in module player_control_y is either unconnected or has no load
 WARNING: [Synth 8-7129] Port xpos[0] in module player_control_y is either unconnected or has no load
@@ -87,10 +64,7 @@ WARNING: [Synth 8-3332] Sequential element (u_top_prj_keyboard/u_Ps2Interface/FS
 WARNING: [Synth 8-3332] Sequential element (u_top_prj_keyboard/u_Ps2Interface/FSM_onehot_state_reg[8]) is unused and will be removed from module top_vga_basys3.
 WARNING: [Synth 8-3332] Sequential element (u_top_prj_keyboard/u_Ps2Interface/FSM_onehot_state_reg[7]) is unused and will be removed from module top_vga_basys3.
 WARNING: [Synth 8-3332] Sequential element (u_top_prj_keyboard/u_Ps2Interface/FSM_onehot_state_reg[6]) is unused and will be removed from module top_vga_basys3.
-WARNING: [Synth 8-5835] Resources of type BRAM have been overutilized. Used = 104, Available = 100. Will try to implement using LUT-RAM. 
+WARNING: [Synth 8-5835] Resources of type BRAM have been overutilized. Used = 107, Available = 100. Will try to implement using LUT-RAM. 
 
 ----IMPLEMENTATION----
-WARNING: [DRC PDRC-153] Gated clock check: Net u_top_prj_gameplay/u_top_game/u_control_hp/E[0] is a gated clock net sourced by a combinational pin u_top_prj_gameplay/u_top_game/u_control_hp/char_xy_next_reg[7]_i_2/O, cell u_top_prj_gameplay/u_top_game/u_control_hp/char_xy_next_reg[7]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-WARNING: [DRC PDRC-153] Gated clock check: Net u_top_prj_gameplay/u_top_game/u_mape_rom/FSM_sequential_state_reg[2]_9 is a gated clock net sourced by a combinational pin u_top_prj_gameplay/u_top_game/u_mape_rom/item2_nxt_reg_i_2/O, cell u_top_prj_gameplay/u_top_game/u_mape_rom/item2_nxt_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-WARNING: [DRC PDRC-153] Gated clock check: Net u_top_prj_gameplay/u_top_game/u_player_control_y/currentjump_nxt_reg[5]_i_2_n_2 is a gated clock net sourced by a combinational pin u_top_prj_gameplay/u_top_game/u_player_control_y/currentjump_nxt_reg[5]_i_2/O, cell u_top_prj_gameplay/u_top_game/u_player_control_y/currentjump_nxt_reg[5]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-WARNING: [DRC PDRC-153] Gated clock check: Net u_top_prj_gameplay/u_top_menu/u_draw_menu/out\\.vcount_reg[8]_1 is a gated clock net sourced by a combinational pin u_top_prj_gameplay/u_top_menu/u_draw_menu/char_line_next_reg[3]_i_2/O, cell u_top_prj_gameplay/u_top_menu/u_draw_menu/char_line_next_reg[3]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+CLEAR :)

@@ -40,8 +40,7 @@ import my_function::*;
 // local variables  and signals
 //------------------------------------------------------------------------------
 
-logic [3:0] char_line_next;
-logic [3:0] char_line_next2;
+
 logic [10:0] hcount_del;
 logic [10:0] vcount_del;
 logic vsync_del, hsync_del;
@@ -49,12 +48,10 @@ logic vblnk_del, hblnk_del;
 logic [11:0] rgb_out,rgb_in1,rgb_in2,rgb_in3,rgb_in4;
 logic [7:0] char_xy_next;
 logic [31:0] xy;
-logic [10:0]  addr_nxt, addr_nxt_del;
-logic [3:0] hp;
+logic [10:0]  addr_nxt;
 
 wire [10:0] signals2delay;
 wire [10:0] delayedsignals;
-wire [6:0] char_code_numb;
 
 assign signals2delay[0] = in.hsync;
 assign hsync_del = delayedsignals[0];
@@ -86,12 +83,6 @@ delay u_delay3(
     .dout(delayedsignals)
 );
 
-numb2char u_numb2char(
-    .clk,
-    .input_numb(hp),
-    .char_code(char_code_numb)
-);
-
 //------------------------------------------------------------------------------
 // output register with sync reset
 //------------------------------------------------------------------------------
@@ -99,7 +90,6 @@ numb2char u_numb2char(
 always_ff @(posedge clk) begin : bg_ff_blk
     if (rst) begin
         char_xy <= 0;
-        char_line_next2 <= 0;
 
         //char_line <=0;
 
@@ -117,8 +107,6 @@ always_ff @(posedge clk) begin : bg_ff_blk
         rgb_in1 <= '0;
 
         addr <= '0;
-
-        hp<=9;
 
     end else begin
 
@@ -144,8 +132,6 @@ always_ff @(posedge clk) begin : bg_ff_blk
 
         addr <= addr_nxt;
  
-
-        hp<=hp_in;
 
     end
 end
@@ -177,7 +163,7 @@ always_comb begin : out_comb_blk
             addr_nxt [10:4] = SPACE;
         end
         else if (hp_in == 3'b0) begin
-            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,350,350,8*4,16, MENU_TEXT_COLOR,  COLOR_RED, 2);
+            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,200,350,8*8,16, MENU_TEXT_COLOR,  COLOR_RED, 3);
             char_xy_next [3:0] = xy [3:0];
             char_xy_next [7:4] = xy [11:8];
             addr_nxt [3:0]= xy [19:16];
@@ -189,13 +175,24 @@ always_comb begin : out_comb_blk
             addr_nxt [10:4] = R;
             else if(char_xy==2)
             addr_nxt [10:4] = E;
-            else
+            else if(char_xy==3)
             addr_nxt [10:4] = G;
+            else if(char_xy==4)
+            addr_nxt [10:4] = R;
+            else if(char_xy==5)
+            addr_nxt [10:4] = A;
+            else if(char_xy==6)
+            addr_nxt [10:4] = LL;
+            else if(char_xy==7)
+            addr_nxt [10:4] = E;
+            else
+            addr_nxt [10:4] = S;
 
         end
         else begin
             addr_nxt = '0;
             rgb_out = rgb_in4;
+            char_xy_next  = '0;
         end
 
 

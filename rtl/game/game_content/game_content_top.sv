@@ -13,9 +13,9 @@ module game_content_top (
 );
 
 
-wire [10:0] addr,addr1,addr2,addr3,addr4,addr5;
+wire [10:0] addr,addr1,addr2,addr3,addr4,addr5,addr6;
 wire [7:0] char_xy;
-wire [7:0] char_line_pixels1,char_line_pixels2,char_line_pixels3,char_line_pixels4,char_line_pixels5;
+wire [7:0] char_line_pixels1,char_line_pixels2,char_line_pixels3,char_line_pixels4,char_line_pixels5,char_line_pixels6;
 
 game_cont_dialog1 u_game_cont_dialog1(
     
@@ -29,6 +29,7 @@ game_cont_dialog1 u_game_cont_dialog1(
     .char_line_pixels3(char_line_pixels3),
     .char_line_pixels4(char_line_pixels4),
     .char_line_pixels5(char_line_pixels5),
+    .char_line_pixels6(char_line_pixels6),
     .char_line(addr[3:0]),
     .char_xy(char_xy),
 
@@ -43,7 +44,7 @@ assign addr2[3:0] = addr[3:0];
 assign addr3[3:0] = addr[3:0];
 assign addr4[3:0] = addr[3:0];
 assign addr5[3:0] = addr[3:0];
-
+assign addr6[3:0] = addr[3:0];
 
 game_cont_txt1 u_game_cont_txt1(
     .clk,
@@ -77,7 +78,7 @@ game_cont_txt4 u_game_cont_txt4(
 
 );
 
-game_cont_txt4 u_game_cont_txt5(
+game_cont_txt5 u_game_cont_txt5(
     .clk,
     .char_xy(char_xy),
     .char_code(addr5[10:4])
@@ -85,9 +86,17 @@ game_cont_txt4 u_game_cont_txt5(
 
 );
 
+game_cont_txt6 u_game_cont_txt6(
+    .clk,
+    .char_xy(char_xy),
+    .char_code(addr6[10:4])
+
+
+);
+
 font_rom u_font_rom(
     .clk,
-    .addr(addr),
+    .addr(addr1),
     .char_line_pixels(char_line_pixels1)
 );
 
@@ -112,7 +121,11 @@ font_rom u_font_rom5(
     .addr(addr5),
     .char_line_pixels(char_line_pixels5)
 );
-
+font_rom u_font_rom6(
+    .clk,
+    .addr(addr6),
+    .char_line_pixels(char_line_pixels6)
+);
 
 
 endmodule

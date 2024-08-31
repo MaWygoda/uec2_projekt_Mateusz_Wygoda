@@ -43,7 +43,6 @@ import vga_pkg::*;
 //------------------------------------------------------------------------------
 
 logic [3:0] char_line_next;
-logic [3:0] char_line_next2;
 
 logic [10:0] hcount_del;
 logic [10:0] vcount_del;
@@ -132,7 +131,7 @@ function [31:0] display_text;
         end
         else begin
             f_rgb= rgb; 
-    
+            char_line_next = char_line;
         end
     
         display_text [7:0]= ((hcount-POS_CHAR_X)/8)>>SCALE;
@@ -198,8 +197,6 @@ end
 always_ff @(posedge clk) begin : out_reg_blk
     if(rst) begin : out_reg_rst_blk
         char_xy <= 0;
-        char_line_next2 <= 0;
-
         char_line <=0;
 
         out.vcount <= '0;
@@ -228,7 +225,7 @@ always_ff @(posedge clk) begin : out_reg_blk
 
 
         char_line <= char_line_next;
-        //char_line_next2 <=char_line_next;
+
 
         out.rgb <= rgb_out;
 

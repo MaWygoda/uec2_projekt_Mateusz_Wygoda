@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 
-module game_cont_txt4
+module game_cont_txt6
     (
         input  logic        clk,
         input  logic [7:0]  char_xy,           
@@ -56,15 +56,15 @@ import vga_pkg::*;
 
 
             8'h20: data = SPACE;
-            8'h21: data = Z;
-            8'h22: data = A;
-            8'h23: data = M;
-            8'h24: data = K;
-            8'h25: data = N;
-            8'h26: data = I;
+            8'h21: data = O;
+            8'h22: data = T;
+            8'h23: data = W;
+            8'h24: data = A;
+            8'h25: data = R;
+            8'h26: data = T;
             8'h27: data = E;
-            8'h28: data = T;
-            8'h29: data = E;
+            8'h28: data = SPACE;
+            8'h29: data = SPACE;
             8'h2A: data = SPACE;
             8'h2B: data = SPACE;
             8'h2C: data = SPACE;

@@ -67,6 +67,7 @@ set sv_files {
     ../rtl/game/game_content/game_cont_txt3.sv
     ../rtl/game/game_content/game_cont_txt4.sv
     ../rtl/game/game_content/game_cont_txt5.sv
+    ../rtl/game/game_content/game_cont_txt6.sv
     ../rtl/game/game_content/game_content_top.sv
     ../rtl/control.sv
     ../rtl/top_prj_keyboard.sv  
