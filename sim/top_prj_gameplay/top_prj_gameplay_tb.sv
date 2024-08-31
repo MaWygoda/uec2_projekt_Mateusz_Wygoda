@@ -74,12 +74,14 @@ initial begin
     wait (vs == 1'b0);
     @(negedge vs) $display("Info: negedge VS at %t",$time);
     @(negedge vs) $display("Info: negedge VS at %t",$time);
-
-    key = key_1;
+    key = key_esc;
+    # 100
+    key = key_3;
 
     wait (vs == 1'b0);
     @(negedge vs) $display("Info: negedge VS at %t",$time);
     @(negedge vs) $display("Info: negedge VS at %t",$time);
+
 
     // End the simulation.
     $display("Simulation is over, check the waveforms.");

@@ -250,7 +250,7 @@ end
 always_comb begin : out_comb_blk
     case(state_nxt)
         MENU: begin
-            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,200,100,8*16,16*4, MENU_TEXT_COLOR,  MENU_BG_COLOR, 1);
+            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,250,200,8*16,16*4, MENU_TEXT_COLOR,  MENU_BG_COLOR, 2);
             char_xy_next [3:0] = xy [3:0];
             char_xy_next [7:4] = xy [11:8];
             //char_line_next = xy [19:16];
@@ -259,39 +259,36 @@ always_comb begin : out_comb_blk
             select_text_nxt = 2'b00;
         end
         TEXT1: begin
-            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,100,100,8*64,16*8, TEXT1_COLOR, TEXT1_BG_COLOR,0);
-            char_xy_next [4:0] = xy [4:0];
-            char_xy_next [7:5] = xy [10:8];
+            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,230,300,8*64,16*4, TEXT1_COLOR, TEXT1_BG_COLOR,0);
+            char_xy_next [5:0] = xy [5:0];
+            char_xy_next [7:6] = xy [9:8];
             //char_line_next = xy [19:16];
             rgb_out = xy [31:20];
 
             select_text_nxt = 2'b01;
         end
         TEXT2: begin
-            xy  = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,150,150,8*64,16*8,TEXT1_COLOR, TEXT1_BG_COLOR,0);
-            char_xy_next [4:0] = xy [4:0];
-            char_xy_next [7:5] = xy [10:8];
+            xy  = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,230,300,8*64,16*4,TEXT1_COLOR, TEXT1_BG_COLOR,0);
+            char_xy_next [5:0] = xy [5:0];
+            char_xy_next [7:6] = xy [9:8];
             //char_line_next = xy [19:16];
             rgb_out = xy [31:20];
 
             select_text_nxt = 2'b10;
         end
         TEXT3: begin
-            xy  = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,210,210,8*64,16*8,TEXT1_COLOR, TEXT1_BG_COLOR,0);
-            char_xy_next [4:0] = xy [4:0];
-            char_xy_next [7:5] = xy [10:8];
+            xy  = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,230,300,8*64,16*4,TEXT1_COLOR, TEXT1_BG_COLOR,0);
+            char_xy_next [5:0] = xy [5:0];
+            char_xy_next [7:6] = xy [9:8];
             //char_line_next = xy [19:16];
             rgb_out = xy [31:20];
 
             select_text_nxt = 2'b11;
         end
         default: begin
-            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,200,100,8*16,16*4, MENU_TEXT_COLOR,  MENU_BG_COLOR, 1);
-            char_xy_next [3:0] = xy [3:0];
-            char_xy_next [7:4] = xy [11:8];
-            //char_line_next = xy [19:16];
-            rgb_out = xy [31:20];
-
+            char_xy_next= '0;
+            char_line_next = '0;
+            rgb_out = '0;
             select_text_nxt = 2'b00;
         end
     endcase

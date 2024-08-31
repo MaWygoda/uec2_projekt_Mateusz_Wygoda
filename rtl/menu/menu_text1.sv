@@ -35,10 +35,10 @@ module menu_text1
     always_comb
         case (char_xy)
 
-            8'h00: data = A;
-            8'h01: data = A;
-            8'h02: data = A;
-            8'h03: data = A;
+            8'h00: data = SPACE;
+            8'h01: data = SPACE;
+            8'h02: data = SPACE;
+            8'h03: data = SPACE;
             8'h04: data = F;
             8'h05: data = A;
             8'h06: data = B;
@@ -69,39 +69,39 @@ module menu_text1
             8'h1E: data = SPACE;
             8'h1F: data = SPACE;
 
-            8'h20: data = 7'h33;
-            8'h21: data = 7'h07;
-            8'h22: data = 7'h07;   
-            8'h23: data = 7'h4d;  //M
-            8'h24: data = 7'h41;  //A
-            8'h25: data = 7'h54;  //T
-            8'h26: data = 7'h45;  //E
-            8'h27: data = 7'h55;  //U
-            8'h28: data = 7'h53;  //S
-            8'h29: data = 7'h5a;  //Z
-            8'h2A: data = 7'h07;
-            8'h2B: data = 7'h07;
-            8'h2C: data = 7'h07;
-            8'h2D: data = 7'h07;
-            8'h2E: data = 7'h07;
-            8'h2F: data = 7'h07;
+            8'h20: data = SPACE;
+            8'h21: data = SPACE;
+            8'h22: data = SPACE;
+            8'h23: data = SPACE;
+            8'h24: data = SPACE;
+            8'h25: data = SPACE;
+            8'h26: data = SPACE;
+            8'h27: data = SPACE;
+            8'h28: data = SPACE;
+            8'h29: data = SPACE;
+            8'h2A: data = SPACE;
+            8'h2B: data = SPACE;
+            8'h2C: data = SPACE;
+            8'h2D: data = SPACE;
+            8'h2E: data = SPACE;
+            8'h2F: data = SPACE;
 
-            8'h30: data = 7'h34;
-            8'h31: data = 7'h07;
-            8'h32: data = 7'h07;
-            8'h33: data = 7'h57; //W
-            8'h34: data = 7'h59; //Y
-            8'h35: data = 7'h47; //G
-            8'h36: data = 7'h4f; //O
-            8'h37: data = 7'h44; //D
-            8'h38: data = 7'h41; //A
-            8'h39: data = 7'h07;
-            8'h3A: data = 7'h07;
-            8'h3B: data = 7'h07;
-            8'h3C: data = 7'h07;
-            8'h3D: data = 7'h07;
-            8'h3E: data = 7'h07;
-            8'h3F: data = 7'h07;
+            8'h30: data = SPACE;
+            8'h31: data = SPACE;
+            8'h32: data = SPACE;
+            8'h33: data = SPACE;
+            8'h34: data = SPACE;
+            8'h35: data = SPACE;
+            8'h36: data = SPACE;
+            8'h37: data = SPACE;
+            8'h38: data = SPACE;
+            8'h39: data = SPACE;
+            8'h3A: data = SPACE;
+            8'h3B: data = SPACE;
+            8'h3C: data = SPACE;
+            8'h3D: data = SPACE;
+            8'h3E: data = SPACE;
+            8'h3F: data = SPACE;
 
             8'h40: data = 7'h35;
             8'h41: data = 7'h51;

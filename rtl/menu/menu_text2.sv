@@ -132,8 +132,8 @@ module menu_text2
             8'h54: data = O;
             8'h55: data = D;
             8'h56: data = A;
-            8'h57: data = 7'h67;
-            8'h58: data = 7'h68;
+            8'h57: data = SPACE;
+            8'h58: data = SPACE;
             8'h59: data = 7'h69;
             8'h5A: data = 7'h6a;
             8'h5B: data = 7'h6b;

@@ -111,7 +111,7 @@ wire [9:0] player_ypos;
 wire [15:0] pixel_adr2;
 wire  [11:0] rgb_pixel2;
 wire  [11:0] rgb_pixel2l;
-wire dir, door;
+wire dir, door, item2;
 
 player_control u_player_control(
     .clk,
@@ -190,7 +190,8 @@ game_content_top u_game_content_top(
 .in(vga_game5.in),
 .out(vga_game6.out),
 .current_pix(current_pix),
-.door(door)
+.door(door),
+.item2(item2)
 
 );
 
@@ -201,7 +202,7 @@ game_end u_game_end(
     .clk,
     .rst,
     .hp_in(hp),
-    .item2(doors),
+    .item2(item2),
     .in(vga_game6.in),
     .out(out),
     .addr(adr2),

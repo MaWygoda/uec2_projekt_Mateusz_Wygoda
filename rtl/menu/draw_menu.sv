@@ -65,25 +65,25 @@ always_comb begin
     end else begin                              
         if (in.vcount >= 0 && in.vcount < 16)  
             if ((in.hcount%32) > 16 )                  
-                rgb_nxt = COLOR_YELLOW; 
+                rgb_nxt = COLOR_DARK_GREEN; 
             else
-                rgb_nxt = COLOR_BLUE;                
+                rgb_nxt = COLOR_DARK_BROWN;                
         else if (in.vcount > (VER_PIXELS-16) && in.vcount <= VER_PIXELS - 1) 
             if ((in.hcount%32) < 16  )                  
-                rgb_nxt = COLOR_YELLOW; 
+                rgb_nxt = COLOR_DARK_GREEN; 
             else
-                rgb_nxt = COLOR_BLUE;   
+                rgb_nxt = COLOR_DARK_BROWN;   
                            
         else if (in.hcount  >= 0 && in.hcount < 16 )   
             if ((in.vcount%32) > 16 )                  
-                rgb_nxt = COLOR_GREEN; 
+                rgb_nxt = COLOR_DARK_GREEN; 
             else
-                rgb_nxt = COLOR_BLUE;                            
+                rgb_nxt = COLOR_DARK_BROWN;                            
         else if (in.hcount >  (HOR_PIXELS-16) && in.hcount <= HOR_PIXELS-1 )   
             if ((in.vcount%32) < 16 )                  
-                rgb_nxt = COLOR_RED; 
+                rgb_nxt = COLOR_DARK_GREEN; 
             else
-                rgb_nxt = COLOR_BLUE;              
+                rgb_nxt = COLOR_DARK_BROWN;              
 
         else                                    
             rgb_nxt = MENU_BG_COLOR;             
