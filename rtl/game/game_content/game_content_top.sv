@@ -48,6 +48,7 @@ assign addr6[3:0] = addr[3:0];
 
 game_cont_txt1 u_game_cont_txt1(
     .clk,
+    .rst,
     .char_xy(char_xy),
     .char_code(addr1[10:4])
 
@@ -56,6 +57,7 @@ game_cont_txt1 u_game_cont_txt1(
 
 game_cont_txt2 u_game_cont_txt2(
     .clk,
+    .rst,
     .char_xy(char_xy),
     .char_code(addr2[10:4])
 
@@ -64,6 +66,7 @@ game_cont_txt2 u_game_cont_txt2(
 
 game_cont_txt3 u_game_cont_txt3(
     .clk,
+    .rst,
     .char_xy(char_xy),
     .char_code(addr3[10:4])
 
@@ -72,6 +75,7 @@ game_cont_txt3 u_game_cont_txt3(
 
 game_cont_txt4 u_game_cont_txt4(
     .clk,
+    .rst,
     .char_xy(char_xy),
     .char_code(addr4[10:4])
 
@@ -80,6 +84,7 @@ game_cont_txt4 u_game_cont_txt4(
 
 game_cont_txt5 u_game_cont_txt5(
     .clk,
+    .rst,
     .char_xy(char_xy),
     .char_code(addr5[10:4])
 
@@ -88,6 +93,7 @@ game_cont_txt5 u_game_cont_txt5(
 
 game_cont_txt6 u_game_cont_txt6(
     .clk,
+    .rst,
     .char_xy(char_xy),
     .char_code(addr6[10:4])
 

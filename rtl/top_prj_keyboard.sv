@@ -11,7 +11,6 @@
 
 module top_prj_keyboard (
     input  logic clk,
-    input  logic clk100,
     input  logic rst,
     inout ps2_clk,
     inout ps2_data,

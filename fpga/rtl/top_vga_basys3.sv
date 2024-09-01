@@ -82,7 +82,6 @@ ODDR pclk_oddr (
 top_prj_keyboard u_top_prj_keyboard (
 
     .clk(clk65),
-    .clk100(clk100),
     .rst(btnC),
     .ps2_clk(PS2Clk),
     .ps2_data(PS2Data),

@@ -33,7 +33,6 @@ localparam HP_INIT = 9;
 //------------------------------------------------------------------------------
 
 logic [3:0]  hp_numb_nxt;
-logic  [2:0] state_reg,state_reg_nxt;
 logic [35:0] timer, timer_nxt;
 
 

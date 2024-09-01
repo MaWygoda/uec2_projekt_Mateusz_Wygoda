@@ -76,7 +76,7 @@ initial begin
     @(negedge vs) $display("Info: negedge VS at %t",$time);
     key = key_esc;
     # 100
-    key = key_3;
+    key = key_2;
 
     wait (vs == 1'b0);
     @(negedge vs) $display("Info: negedge VS at %t",$time);

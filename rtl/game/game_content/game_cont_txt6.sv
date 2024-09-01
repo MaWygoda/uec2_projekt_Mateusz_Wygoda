@@ -4,6 +4,7 @@
 module game_cont_txt6
     (
         input  logic        clk,
+        input  logic        rst,
         input  logic [7:0]  char_xy,           
         output logic  [6:0] char_code
     );
@@ -14,8 +15,12 @@ import vga_pkg::*;
     logic [6:0] data;
 
     // body
-    always_ff @(posedge clk)
-        char_code <= data;
+    always_ff @(posedge clk) begin : out_reg_blk
+        if (rst) 
+            char_code <= '0;
+        else 
+            char_code <= data;
+    end
 
     always_comb
         case (char_xy)

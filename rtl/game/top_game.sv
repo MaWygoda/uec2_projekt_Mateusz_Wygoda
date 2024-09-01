@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////////////////
+/*
+ Module name:   top_game
+ Author:        Mateusz Wygoda
+ Version:       1.0
+ Last modified: 2024-09.01
+ Coding style: -
+ Description:  module top
+ */
+//////////////////////////////////////////////////////////////////////////////
 `timescale 1 ns / 1 ps
 
 module top_game (
@@ -107,7 +117,7 @@ mape_rom u_mape_rom(
 
 
 wire [9:0] player_ypos;
-wire [15:0] pixel_adr2;
+wire [11:0] pixel_adr2;
 wire  [11:0] rgb_pixel2;
 wire  [11:0] rgb_pixel2l;
 wire dir, door, item2;

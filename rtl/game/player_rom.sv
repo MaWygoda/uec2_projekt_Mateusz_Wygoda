@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////////////////
+/*
+ Module name:   player_rom
+ Author:        Mateusz Wygoda
+ Version:       1.0
+ Last modified: 2024-09.01
+ Coding style: Xilinx recommended + ANSI ports
+ Description:  Template for ROM module as recommended by Xilinx
+ */
+//////////////////////////////////////////////////////////////////////////////
 
 module player_rom (
     input  logic clk ,
@@ -7,17 +17,13 @@ module player_rom (
 );
 
 
-/**
- * Local variables and signals
- */
-
-reg [11:0] rom [0:4096];
-reg [11:0] rom2 [0:4096];
 
 
-/**
- * Memory initialization from a file
- */
+logic [11:0] rom [0:4096];
+logic [11:0] rom2 [0:4096];
+
+(* rom_style = "block" *) // block || distributed
+
 
 /* Relative path from the simulation or synthesis working directory */
 initial $readmemh("../../rtl/images/player.dat", rom);

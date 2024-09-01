@@ -167,7 +167,7 @@ end
             8'h75: data = SPACE;
             8'h76: data = K;
             8'h77: data = R;
-            8'h78: data = O;
+            8'h78: data = OO;
             8'h79: data = L;
             8'h7A: data = E;
             8'h7B: data = S;
@@ -195,7 +195,7 @@ end
             
             8'h90: data = K;
             8'h91: data = R;
-            8'h92: data = O;
+            8'h92: data = OO;
             8'h93: data = L;
             8'h94: data = E;
             8'h95: data = M;
@@ -249,7 +249,7 @@ end
             8'hC2: data = E;
             8'hC3: data = SPACE;
             8'hC4: data = D;
-            8'hC5: data = 0;
+            8'hC5: data = O;
             8'hC6: data = SPACE;
             8'hC7: data = R;
             8'hC8: data = U;

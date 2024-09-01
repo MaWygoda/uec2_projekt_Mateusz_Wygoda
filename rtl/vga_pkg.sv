@@ -47,6 +47,7 @@ localparam
 localparam
 
         LL=7'h01, 
+        OO=7'h02,
         A=7'h41,
         B=7'h42,
         C=7'h43,

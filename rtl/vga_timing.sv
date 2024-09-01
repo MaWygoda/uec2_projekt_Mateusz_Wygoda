@@ -1,11 +1,13 @@
-/**
- * Copyright (C) 2023  AGH University of Science and Technology
- * MTM UEC2
- * Author: Piotr Kaczmarczyk
- *
- * Description:
- * Vga timing controller.
+//////////////////////////////////////////////////////////////////////////////
+/*
+ Module name:   vga_timing
+ Author:        Mateusz Wygoda
+ Version:       1.0
+ Last modified: 2024-09-01
+ Coding style: safe, with FPGA sync reset
+ Description:  Template for simple module with registered outputs
  */
+//////////////////////////////////////////////////////////////////////////////
 
 `timescale 1 ns / 1 ps
 
@@ -17,22 +19,27 @@ module vga_timing (
 
 import vga_pkg::*;
 
-/**
- * Local variables and signals
- */
+//------------------------------------------------------------------------------
+// local parameters
+//------------------------------------------------------------------------------
+
+
+//------------------------------------------------------------------------------
+// local variables
+//------------------------------------------------------------------------------
 
 logic [10:0] hcount_reg, hcount_next;
 logic [10:0] vcount_reg, vcount_next;
 logic vsync_reg, vsync_next, hsync_reg, hsync_next;
 logic vblnk_reg, vblnk_next, hblnk_reg, hblnk_next;
 
-/**
- * Internal logic
- */
+//------------------------------------------------------------------------------
+// output register with sync reset
+//------------------------------------------------------------------------------
 
-always_ff@(posedge clk, posedge rst)
-    if(rst)
-        begin
+
+always_ff @(posedge clk) begin : out_reg_blk
+    if(rst) begin : out_reg_rst_blk
             hcount_reg <=0;
             vcount_reg <=0;
             vsync_reg <=0;
@@ -41,8 +48,7 @@ always_ff@(posedge clk, posedge rst)
             hblnk_reg <=0;
             out.rgb <= 12'h0_0_0;  
         end
-    else
-        begin
+    else begin : out_reg_run_blk
             hcount_reg <=hcount_next;
             vcount_reg <=vcount_next;
             vsync_reg <=vsync_next;
@@ -51,6 +57,12 @@ always_ff@(posedge clk, posedge rst)
             hblnk_reg <=hblnk_next;
             out.rgb <= 12'h0_0_0;
         end
+
+end
+
+//------------------------------------------------------------------------------
+// logic
+//------------------------------------------------------------------------------
         
 always_comb begin
     if( hcount_reg==1343)

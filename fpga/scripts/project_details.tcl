@@ -44,7 +44,6 @@ set sv_files {
     ../rtl/common/my_function.sv
     ../rtl/common/numb2char.sv
     ../rtl/keyboard/keyboard_decode.sv
-    ../rtl/keyboard/change_clock.sv
     ../rtl/common/delay.sv
     ../rtl/common/font_rom.sv
     ../rtl/menu/top_menu.sv

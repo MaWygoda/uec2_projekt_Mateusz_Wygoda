@@ -11,7 +11,6 @@
 module player_control (
     input  logic clk,
     input  logic rst,
-    //input  logic select,
     input  logic [3:0] key,
     input logic [9:0] ypos,
     output logic [10:0] player_xpos,
