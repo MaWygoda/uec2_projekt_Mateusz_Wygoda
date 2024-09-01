@@ -89,6 +89,74 @@ import vga_pkg::*;
             8'h3E: data = SPACE;
             8'h3F: data = SPACE;
 
+            8'h40: data = SPACE;
+            8'h41: data = SPACE;
+            8'h42: data = SPACE;
+            8'h43: data = SPACE;
+            8'h44: data = SPACE;
+            8'h45: data = SPACE;
+            8'h46: data = SPACE;
+            8'h47: data = SPACE;
+            8'h48: data = SPACE;
+            8'h49: data = SPACE;
+            8'h4A: data = SPACE;
+            8'h4B: data = SPACE;
+            8'h4C: data = SPACE;
+            8'h4D: data = SPACE;
+            8'h4E: data = SPACE;
+            8'h4F: data = SPACE;
+
+            8'h50: data = SPACE;
+            8'h51: data = SPACE;
+            8'h52: data = SPACE;
+            8'h53: data = SPACE;
+            8'h54: data = SPACE;
+            8'h55: data = SPACE;
+            8'h56: data = SPACE;
+            8'h57: data = SPACE;
+            8'h58: data = SPACE;
+            8'h59: data =SPACE;
+            8'h5A: data = SPACE;
+            8'h5B: data = SPACE;
+            8'h5C: data = SPACE;
+            8'h5D: data = SPACE;
+            8'h5E: data = SPACE;
+            8'h5F: data = SPACE;
+
+            8'h60: data = SPACE;
+            8'h61: data = SPACE;
+            8'h62: data = SPACE;
+            8'h63: data = SPACE;
+            8'h64: data = SPACE;
+            8'h65: data = SPACE;
+            8'h66: data = SPACE;
+            8'h67: data = SPACE;
+            8'h68: data = SPACE;
+            8'h69: data = SPACE;
+            8'h6A: data = SPACE;
+            8'h6B: data = SPACE;
+            8'h6C: data = SPACE;
+            8'h6D: data = SPACE;
+            8'h6E: data = SPACE;
+            8'h6F: data = SPACE;
+
+            8'h70: data = SPACE;
+            8'h71: data = SPACE;
+            8'h72: data = SPACE;
+            8'h73: data = SPACE;
+            8'h74: data = SPACE;
+            8'h75: data = SPACE;
+            8'h76: data = SPACE;
+            8'h77: data = SPACE;
+            8'h78: data = SPACE;
+            8'h79: data = SPACE;
+            8'h7A: data = SPACE;
+            8'h7B: data = SPACE;
+            8'h7C: data = SPACE;
+            8'h7D: data = SPACE;
+            8'h7E: data = SPACE;
+            8'h7F: data = SPACE;
+
             default: data = SPACE;
         endcase
 

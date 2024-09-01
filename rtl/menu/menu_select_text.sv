@@ -4,6 +4,8 @@
  Author:        Mateusz Wygoda
  Version:       1.0
  Last modified: 2024-07-14
+ Coding style: safe, with FPGA sync reset
+ Description:  select text to draw 
  */
 //////////////////////////////////////////////////////////////////////////////
  `timescale 1 ns / 1 ps
@@ -66,7 +68,7 @@ always_comb begin : out_comb_blk
             char_code_nxt = char_code_in_3;
         2'b11:
             char_code_nxt = char_code_in_4;
-        default: char_code_nxt = char_code_in_1; 
+        default: char_code_nxt = '0; 
 endcase
 
     

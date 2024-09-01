@@ -42,7 +42,6 @@ control_hp u_control_hp(
     .clk,
     .rst,
     .current_pix(current_pix),
-    .key,
     .hp_numb(hp)
 );
 

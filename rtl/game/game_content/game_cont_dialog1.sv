@@ -158,8 +158,8 @@ always_comb begin : state_comb_blk
                     state_nxt = IDLE;
         end
         D2_2: begin
-            if(current_pix==4'h2) 
-                state_nxt=D2;
+            if(current_pix==4'h3) 
+                state_nxt=D2_2;
             else
                 state_nxt = IDLE;
         end

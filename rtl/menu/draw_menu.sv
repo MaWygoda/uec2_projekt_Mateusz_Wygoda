@@ -3,7 +3,9 @@
  Module name:   draw_menu 
  Author:        Mateusz Wygoda
  Version:       1.0
- Last modified: 2024-07-14
+ Last modified: 2024-08-30
+ Coding style: safe, with FPGA sync reset
+ Description:  Draw menu background
  */
 //////////////////////////////////////////////////////////////////////////////
 `timescale 1 ns / 1 ps
@@ -17,8 +19,6 @@ module draw_menu (
 );
 
 import vga_pkg::*;
-
-
 
 //------------------------------------------------------------------------------
 // local parameters
@@ -60,6 +60,7 @@ end
 // logic
 //------------------------------------------------------------------------------
 always_comb begin 
+    if (in.rgb==12'h0_0_0) begin
     if (in.vblnk || in.hblnk) begin             
         rgb_nxt = 12'h0_0_0;                    
     end else begin                              
@@ -88,6 +89,10 @@ always_comb begin
         else                                    
             rgb_nxt = MENU_BG_COLOR;             
     end
+    end
+    else
+        rgb_nxt = 12'h0_0_0;     
+
 end
 
 endmodule

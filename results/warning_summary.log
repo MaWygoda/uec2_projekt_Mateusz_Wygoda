@@ -1,42 +1,14 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-31 19:56:40
+Created: 2024-09-01 21:48:44
 
 ----SYNTHESIS----
 WARNING: [Synth 8-7071] port 'tx_data' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_prj_keyboard.sv:43]
 WARNING: [Synth 8-7071] port 'busy' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_prj_keyboard.sv:43]
 WARNING: [Synth 8-7071] port 'err' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_prj_keyboard.sv:43]
 WARNING: [Synth 8-7023] instance 'u_Ps2Interface' of module 'Ps2Interface' has 10 connections declared, but only 7 given [rtl/top_prj_keyboard.sv:43]
-WARNING: [Synth 8-689] width (16) of port connection 'pixel_adr' does not match port width (12) of module 'draw_player' [rtl/game/top_game.sv:145]
-WARNING: [Synth 8-689] width (16) of port connection 'address' does not match port width (12) of module 'player_rom' [rtl/game/top_game.sv:157]
-WARNING: [Synth 8-7129] Port key[3] in module control_hp is either unconnected or has no load
-WARNING: [Synth 8-7129] Port key[2] in module control_hp is either unconnected or has no load
-WARNING: [Synth 8-7129] Port key[1] in module control_hp is either unconnected or has no load
-WARNING: [Synth 8-7129] Port key[0] in module control_hp is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[11] in module draw_game_bg is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[10] in module draw_game_bg is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[9] in module draw_game_bg is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[8] in module draw_game_bg is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[7] in module draw_game_bg is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[6] in module draw_game_bg is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[5] in module draw_game_bg is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[4] in module draw_game_bg is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[3] in module draw_game_bg is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[2] in module draw_game_bg is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[1] in module draw_game_bg is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[0] in module draw_game_bg is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[11] in module draw_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[10] in module draw_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[9] in module draw_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[8] in module draw_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[7] in module draw_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[6] in module draw_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[5] in module draw_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[4] in module draw_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[3] in module draw_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[2] in module draw_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[1] in module draw_menu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[0] in module draw_menu is either unconnected or has no load
+WARNING: [Synth 8-689] width (16) of port connection 'pixel_adr' does not match port width (12) of module 'draw_player' [rtl/game/top_game.sv:144]
+WARNING: [Synth 8-689] width (16) of port connection 'address' does not match port width (12) of module 'player_rom' [rtl/game/top_game.sv:156]
 WARNING: [Synth 8-7129] Port clk100 in module top_prj_keyboard is either unconnected or has no load
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 WARNING: [Synth 8-7129] Port xpos[1] in module player_control_y is either unconnected or has no load
@@ -44,27 +16,11 @@ WARNING: [Synth 8-7129] Port xpos[0] in module player_control_y is either unconn
 WARNING: [Synth 8-7129] Port ypos[9] in module player_control is either unconnected or has no load
 WARNING: [Synth 8-7129] Port ypos[1] in module player_control is either unconnected or has no load
 WARNING: [Synth 8-7129] Port ypos[0] in module player_control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port key[3] in module control_hp is either unconnected or has no load
-WARNING: [Synth 8-7129] Port key[2] in module control_hp is either unconnected or has no load
-WARNING: [Synth 8-7129] Port key[1] in module control_hp is either unconnected or has no load
-WARNING: [Synth 8-7129] Port key[0] in module control_hp is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[11] in module top_game is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[10] in module top_game is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[9] in module top_game is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[8] in module top_game is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[7] in module top_game is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[6] in module top_game is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[5] in module top_game is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[4] in module top_game is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[3] in module top_game is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[2] in module top_game is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[1] in module top_game is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in\.rgb[0] in module top_game is either unconnected or has no load
 WARNING: [Synth 8-3332] Sequential element (u_top_prj_keyboard/u_Ps2Interface/FSM_onehot_state_reg[9]) is unused and will be removed from module top_vga_basys3.
 WARNING: [Synth 8-3332] Sequential element (u_top_prj_keyboard/u_Ps2Interface/FSM_onehot_state_reg[8]) is unused and will be removed from module top_vga_basys3.
 WARNING: [Synth 8-3332] Sequential element (u_top_prj_keyboard/u_Ps2Interface/FSM_onehot_state_reg[7]) is unused and will be removed from module top_vga_basys3.
 WARNING: [Synth 8-3332] Sequential element (u_top_prj_keyboard/u_Ps2Interface/FSM_onehot_state_reg[6]) is unused and will be removed from module top_vga_basys3.
-WARNING: [Synth 8-5835] Resources of type BRAM have been overutilized. Used = 107, Available = 100. Will try to implement using LUT-RAM. 
+WARNING: [Synth 8-5835] Resources of type BRAM have been overutilized. Used = 105, Available = 100. Will try to implement using LUT-RAM. 
 
 ----IMPLEMENTATION----
 CLEAR :)

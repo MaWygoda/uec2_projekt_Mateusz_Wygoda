@@ -34,6 +34,7 @@ import my_function::*;
 // local parameters
 //------------------------------------------------------------------------------
 
+localparam HP_LEV = 4'h3;
 
 //------------------------------------------------------------------------------
 // local variables  and signals
@@ -154,6 +155,8 @@ end
 // logic
 //------------------------------------------------------------------------------
 always_comb begin : out_comb_blk
+
+    if(hp>HP_LEV)
         begin         
             xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,150,650,8*4,16, MENU_TEXT_COLOR,  COLOR_GREEN, 2);
            char_xy_next [3:0] = xy [3:0];
@@ -170,6 +173,26 @@ always_comb begin : out_comb_blk
             else
             addr_nxt [10:4] = char_code_numb;
         end
+
+    else 
+        begin         
+            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,150,650,8*4,16, MENU_TEXT_COLOR,  COLOR_RED, 2);
+            char_xy_next [3:0] = xy [3:0];
+            char_xy_next [7:4] = xy [11:8];
+            addr_nxt [3:0]= xy [19:16];
+            rgb_out = xy [31:20];
+
+            if(char_xy==0)
+            addr_nxt [10:4] = H;
+            else if(char_xy==1)
+            addr_nxt [10:4] = P;
+            else if(char_xy==2)
+            addr_nxt [10:4] = SPACE;
+            else
+            addr_nxt [10:4] = char_code_numb;
+    end
+
+
 end
 
 endmodule

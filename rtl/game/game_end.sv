@@ -147,7 +147,7 @@ always_comb begin : out_comb_blk
 
         if(item2==1'b1)begin
        
-            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,350,350,8*4,16, MENU_TEXT_COLOR,  COLOR_GREEN, 2);
+            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,200,300,8*8,16, MENU_TEXT_COLOR,  COLOR_GREEN, 3);
            char_xy_next [3:0] = xy [3:0];
            char_xy_next [7:4] = xy [11:8];
            addr_nxt [3:0]= xy [19:16];
@@ -159,11 +159,19 @@ always_comb begin : out_comb_blk
             addr_nxt [10:4] = Y;
             else if(char_xy==2)
             addr_nxt [10:4] = G;
+            else if(char_xy==3)
+            addr_nxt [10:4] = R;
+            else if(char_xy==4)
+            addr_nxt [10:4] = A;
+            else if(char_xy==5)
+            addr_nxt [10:4] = LL;
+            else if(char_xy==6)
+            addr_nxt [10:4] = E;
             else
-            addr_nxt [10:4] = SPACE;
+            addr_nxt [10:4] = S;
         end
         else if (hp_in == 3'b0) begin
-            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,200,350,8*8,16, MENU_TEXT_COLOR,  COLOR_RED, 3);
+            xy = display_text(in.hcount,in.vcount,rgb_in4,char_line_pixels,200,300,8*9,16, MENU_TEXT_COLOR,  COLOR_RED, 3);
             char_xy_next [3:0] = xy [3:0];
             char_xy_next [7:4] = xy [11:8];
             addr_nxt [3:0]= xy [19:16];

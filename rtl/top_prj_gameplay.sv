@@ -1,4 +1,13 @@
-
+//////////////////////////////////////////////////////////////////////////////
+/*
+ Module name:   top_prj_gameplay 
+ Author:        Mateusz Wygoda
+ Version:       1.0
+ Last modified: 2024-08-31
+ Coding style: -
+ Description:  module top
+ */
+//////////////////////////////////////////////////////////////////////////////
 `timescale 1 ns / 1 ps
 
 module top_prj_gameplay (

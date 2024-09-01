@@ -12,7 +12,6 @@
 module control_hp (
     input  logic clk,
     input  logic rst,
-    input logic [3:0] key,
     input logic [3:0] current_pix,
 
     output  logic [3:0]  hp_numb

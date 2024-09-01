@@ -60,11 +60,16 @@ end
 //------------------------------------------------------------------------------
 
 always_comb begin 
-    if (in.vblnk || in.hblnk) begin             
-        rgb_nxt = 12'h0_0_0;                    
-    end 
-        else                                    
-        rgb_nxt = MENU_BG_COLOR;             
+
+    if (in.rgb==12'h0_0_0) begin
+        if (in.vblnk || in.hblnk) begin             
+            rgb_nxt = 12'h0_0_0;                    
+        end 
+            else                                    
+            rgb_nxt = MENU_BG_COLOR;     
+    end        
+    else
+        rgb_nxt = 12'h0_0_0;     
 end
 
 endmodule

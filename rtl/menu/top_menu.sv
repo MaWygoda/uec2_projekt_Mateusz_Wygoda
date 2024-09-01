@@ -4,6 +4,8 @@
  Author:        Mateusz Wygoda
  Version:       1.0
  Last modified: 2024-07-14
+ Coding style: -
+ Description:  module top
  */
 //////////////////////////////////////////////////////////////////////////////
 `timescale 1 ns / 1 ps
@@ -49,17 +51,12 @@ draw_menu u_draw_menu (
 draw_menu_text u_draw_menu_text(
     .clk,
     .rst,
-    //.ypos(yposition_ctl),
-    //.xpos(xposition_ctl),
     .in(vga_menu1.in),
     .out(out),
     .char_xy(char_xy),
     .char_line(charline), 
     .key(key), 
-    //.addr(addr),  
     .char_line_pixels(char_line_pixels),
-    //.pixel_adr(pixel_address),
-    //.rgb_pixel(image_rgb)
     .select_text(selecttext),
     .state_reg_out(menu_state)
 );
@@ -74,24 +71,28 @@ font_rom u_font_rom(
 
 menu_textmenu u_menu_textmenu(
     .clk,
+    .rst,
     .char_xy(char_xy),           
     .char_code(charcode1)
 );
 
 menu_text1 u_menu_text1(
     .clk,
+    .rst,
     .char_xy(char_xy),           
     .char_code(charcode2)
 );
 
 menu_text2 u_menu_text2(
     .clk,
+    .rst,
     .char_xy(char_xy),           
     .char_code(charcode3)
 );
 
 menu_text3 u_menu_text3(
     .clk,
+    .rst,
     .char_xy(char_xy),           
     .char_code(charcode4)
 );

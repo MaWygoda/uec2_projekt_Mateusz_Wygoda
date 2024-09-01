@@ -1,10 +1,9 @@
-
 //////////////////////////////////////////////////////////////////////////////
 /*
  Module name:   top_prj_keyboard 
  Author:        Mateusz Wygoda
- Version:       1.0
- Last modified: 2024-06-30
+ Version:       1.1
+ Last modified: 2024-08-31
  */
 //////////////////////////////////////////////////////////////////////////////
 
@@ -28,6 +27,7 @@ module top_prj_keyboard (
 //------------------------------------------------------------------------------
 // local variables  and signals
 //------------------------------------------------------------------------------
+
 wire [7:0] key_frame;
 wire rx_done;
 
@@ -50,6 +50,7 @@ Ps2Interface u_Ps2Interface (
     .read_data(rx_done)
 
 );
+
 
 
 keyboard_decode u_keyboard_decode
