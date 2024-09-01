@@ -1,13 +1,12 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-09-02 00:56:52
+Created: 2024-09-02 01:14:50
 
 ----SYNTHESIS----
 WARNING: [Synth 8-7071] port 'tx_data' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_prj_keyboard.sv:42]
 WARNING: [Synth 8-7071] port 'busy' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_prj_keyboard.sv:42]
 WARNING: [Synth 8-7071] port 'err' of module 'Ps2Interface' is unconnected for instance 'u_Ps2Interface' [rtl/top_prj_keyboard.sv:42]
 WARNING: [Synth 8-7023] instance 'u_Ps2Interface' of module 'Ps2Interface' has 10 connections declared, but only 7 given [rtl/top_prj_keyboard.sv:42]
-WARNING: [Synth 8-151] case item 11'b00000100000 is unreachable [rtl/common/font_rom.sv:24]
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 WARNING: [Synth 8-7129] Port xpos[1] in module player_control_y is either unconnected or has no load
 WARNING: [Synth 8-7129] Port xpos[0] in module player_control_y is either unconnected or has no load

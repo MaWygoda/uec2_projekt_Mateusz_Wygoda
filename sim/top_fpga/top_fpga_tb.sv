@@ -56,16 +56,7 @@ end
  * Submodules instances
  */
 
-top_vga_basys3 dut (
-    .clk(clk),
-    .btnC(rst),
-    .Vsync(vs),
-    .Hsync(hs),
-    .vgaRed(r),
-    .vgaGreen(g),
-    .vgaBlue(b),
-    .JA1(pclk)
-);
+
 
 tiff_writer #(
     .XDIM(16'd1344),
