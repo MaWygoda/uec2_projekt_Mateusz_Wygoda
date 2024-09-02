@@ -87,6 +87,7 @@ delay u_delay3(
 
 numb2char u_numb2char(
     .clk,
+    .rst,
     .input_numb(hp),
     .char_code(char_code_numb)
 );

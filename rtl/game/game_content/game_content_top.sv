@@ -17,6 +17,10 @@ wire [10:0] addr,addr1,addr2,addr3,addr4,addr5,addr6;
 wire [7:0] char_xy;
 wire [7:0] char_line_pixels1,char_line_pixels2,char_line_pixels3,char_line_pixels4,char_line_pixels5,char_line_pixels6;
 
+/**
+ * Submodules instances
+ */
+
 game_cont_dialog1 u_game_cont_dialog1(
     
     .clk,

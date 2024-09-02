@@ -48,6 +48,11 @@ wire [7:0] map_ofs;
 wire [3:0] hp;
 wire [3:0] current_pix, current_pix_y;
 
+/**
+ * Submodules instances
+ */
+
+
 control_hp u_control_hp(
     .clk,
     .rst,
@@ -61,18 +66,11 @@ draw_game_1 u_draw_game_1(
     .hp_in(hp),
     .in(vga_game1.in),
     .out(vga_game2.out),
-    //.char_xy(char_xy), 
-    //.char_line(charline),
     .char_line_pixels(char_line_pixels),
     .addr(adr)
 
 );
 
-//menu_textmenu u_menu_textmenu(
- //   .clk,
- //   .char_xy(char_xy),           
- //   .char_code(charcode)
-//);
 
 font_rom u_font_rom(
     .clk,
@@ -108,9 +106,7 @@ mape_rom u_mape_rom(
     .clk,
     .rgb(rgb_pixel),
     .address2(pixel_adr1),
-    //.rgb2(rgb_pixel1),
     .address3(pixel_adr1y),
-    //.rgb3(rgb_pixel1y),
     .rgb_cur_pix(current_pix),
     .rgb_cur_pix_y(current_pix_y)
 );
@@ -153,8 +149,6 @@ draw_player u_draw_player(
     .out(vga_game4.out),
     .pixel_adr(pixel_adr2),
     .player_xpos(player_xpos2),
-    //.player_xpos(0),
-    //.player_ypos(player_ypos),
     .player_ypos(player_ypos),
     .rgb_pixel(rgb_pixel2),
     .rgb_pixel_left(rgb_pixel2l),
